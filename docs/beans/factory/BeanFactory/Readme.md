@@ -4,6 +4,7 @@
     - `org.springframework.beans.factory.ListableBeanFactory`
     - `org.springframework.beans.factory.config.ConfigurableBeanFactory`
     - `org.springframework.context.ApplicationContext`
+    -`org.springframework.jndi.support.SimpleJndiBeanFactory`
     - ...
     
 - 本节将围绕 `BeanFactory` 接口展开. 介绍 BeanFactory 系列接口. 
