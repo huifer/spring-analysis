@@ -2,3 +2,4 @@
 - [ ] DefaultListableBeanFactory
 - [ ] TargetSource
 - [ ] ProxyFactory
+- [ ] BeanUtils
