@@ -2903,3 +2903,32 @@ protected void initBeanWrapper(BeanWrapper bw) {
 ```
 
 - 这里采取的是通过`AttributeAccessor`来获取属性, 再获取属性后类型判断再继续你二次解析
+
+
+
+
+
+### isFactoryBean
+- 方法签名: `org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(java.lang.String)`
+
+```java
+	@Override
+	public boolean isFactoryBean(String name) throws NoSuchBeanDefinitionException {
+		// 转换 beanName
+		String beanName = transformedBeanName(name);
+		// 获取 bean 实例
+		Object beanInstance = getSingleton(beanName, false);
+		if (beanInstance != null) {
+			// bean 实例和 FactoryBean 类型判断
+			return (beanInstance instanceof FactoryBean);
+		}
+		// No singleton instance found -> check bean definition.
+		if (!containsBeanDefinition(beanName) && getParentBeanFactory() instanceof ConfigurableBeanFactory) {
+			// No bean definition found in this factory -> delegate to parent.
+			// 父 beanFactory 中判断
+			return ((ConfigurableBeanFactory) getParentBeanFactory()).isFactoryBean(name);
+		}
+		return isFactoryBean(beanName, getMergedLocalBeanDefinition(beanName));
+	}
+
+```

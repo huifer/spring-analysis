@@ -2,4 +2,22 @@
 - [ ] DefaultListableBeanFactory
 - [ ] TargetSource
 - [ ] ProxyFactory
+- [ ] org.springframework.core.ResolvableType#hasGenerics
+- [x] org.springframework.beans.factory.BeanFactory#getBeanProvider(org.springframework.core.ResolvableType)
+- [ ] org.springframework.beans.factory.support.ConstructorResolver
+
+- [x] getBeansOfType
+- [x] getBeanNamesForAnnotation
+- [x] getBeansWithAnnotation
+- [x] findAnnotationOnBean
+- [x] org.springframework.beans.factory.support.DefaultListableBeanFactory#findMergedAnnotationOnBean
+- [x] isAutowireCandidate
+- [x] preInstantiateSingletons
+- [x] registerBeanDefinition
+- [x] removeBeanDefinition
+- [x] resetBeanDefinition
+- [x] updateManualSingletonNames
+- [x] resolveDependency
+- [x] resolveMultipleBeans
+- [x] findAutowireCandidates
 - [ ] BeanUtils
