@@ -180,6 +180,18 @@
     - [AspectJAnnotationParameterNameDiscoverer](/docs/core/ParameterNameDiscoverer/Spring-AspectJAnnotationParameterNameDiscoverer.md)
     - [LocalVariableTableParameterNameDiscoverer](/docs/core/ParameterNameDiscoverer/Spring-LocalVariableTableParameterNameDiscoverer.md)
     
+#### Spring io 相关分析
+
+- [Resource](/docs/core/io/Resource/Spring-Resource-未完成.md)
+- ResourceLoader
+  - [ClassRelativeResourceLoader](/docs/core/io/ResourceLoader/Spring-ClassRelativeResourceLoader.md)
+  - [DefaultResourceLoader](/docs/core/io/ResourceLoader/Spring-DefaultResourceLoader.md)
+  - [ResourceLoader](/docs/core/io/ResourceLoader/Spring-ResourceLoader.md)
+- ResourcePatternResolver
+  - [PathMatchingResourcePatternResolver](/docs/core/io/ResourcePatternResolver/Spring-PathMatchingResourcePatternResolver.md)
+  - [ResourcePatternResolver](/docs/core/io/ResourcePatternResolver/Spring-ResourcePatternResolver.md)
+
+
 
 ### Spring环境相关分析
 
