@@ -67,3 +67,10 @@
 - [ ] Spring-PropertyDescriptorUtils-未完成.md
 - [ ] Spring-StringUtils-未完成.md
 - [ ] Spring-WebApplicationContextUtils-未完成.md
+
+
+
+
+## 当前重要
+- [ ] org.springframework.beans.factory.support.AbstractBeanDefinitionReader
+- [ ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader

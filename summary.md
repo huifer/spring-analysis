@@ -93,6 +93,22 @@
       - [QualifierAnnotationAutowireCandidateResolver](/docs/beans/factory/BeanFactory/support/AutowireCandidateResolver/Spring-QualifierAnnotationAutowireCandidateResolver.md)
       - [SimpleAutowireCandidateResolver](/docs/beans/factory/BeanFactory/support/AutowireCandidateResolver/Spring-SimpleAutowireCandidateResolver.md)
 
+    - [BeanDefinitionRegistry](/docs/beans/factory/BeanFactory/support/Spring-BeanDefinitionRegistry.md)
+    - [BeanNameGenerator](/docs/beans/factory/BeanFactory/support/Spring-BeanNameGenerator.md)
+
+    - [NamespaceHandler导读](/docs/beans/factory/xml/NamespaceHandler/readme.md)
+        - [NamespaceHandler](/docs/beans/factory/xml/NamespaceHandler/Spring-NamespaceHandler.md)
+        - [NamespaceHandlerSupport](/docs/beans/factory/xml/NamespaceHandler/Spring-NamespaceHandlerSupport.md)
+        - [SimpleConstructorNamespaceHandler](/docs/beans/factory/xml/NamespaceHandler/Spring-SimpleConstructorNamespaceHandler.md)
+        - [SimplePropertyNamespaceHandler](/docs/beans/factory/xml/NamespaceHandler/Spring-SimplePropertyNamespaceHandler.md)
+
+    - [NamespaceHandlerResolver 导读](/docs/beans/factory/xml/NamespaceHandlerResolver/readme.md)
+        - [DefaultNamespaceHandlerResolver](/docs/beans/factory/xml/NamespaceHandlerResolver/Spring-DefaultNamespaceHandlerResolver.md)
+        - [NamespaceHandlerResolver](/docs/beans/factory/xml/NamespaceHandlerResolver/Spring-NamespaceHandlerResolver.md)
+
+
+
+
 
 
 - Spring Core
