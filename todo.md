@@ -73,4 +73,4 @@
 
 ## 当前重要
 - [ ] org.springframework.beans.factory.support.AbstractBeanDefinitionReader
-- [ ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+- [x] org.springframework.beans.factory.xml.XmlBeanDefinitionReader

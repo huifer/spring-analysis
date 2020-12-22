@@ -93,7 +93,10 @@
       - [QualifierAnnotationAutowireCandidateResolver](/docs/beans/factory/BeanFactory/support/AutowireCandidateResolver/Spring-QualifierAnnotationAutowireCandidateResolver.md)
       - [SimpleAutowireCandidateResolver](/docs/beans/factory/BeanFactory/support/AutowireCandidateResolver/Spring-SimpleAutowireCandidateResolver.md)
 
-    - [BeanDefinitionRegistry](/docs/beans/factory/BeanFactory/support/Spring-BeanDefinitionRegistry.md)
+    - BeanDefinitionRegistry
+        - [BeanDefinitionRegistry](docs/beans/factory/BeanFactory/support/BeanDefinitionRegistry/Spring-BeanDefinitionRegistry.md)
+        - [DefaultListableBeanFactory](/docs/beans/factory/BeanFactory/support/BeanDefinitionRegistry/Spring-DefaultListableBeanFactory.md)
+        - [SimpleBeanDefinitionRegistry](/docs/beans/factory/BeanFactory/support/BeanDefinitionRegistry/Spring-SimpleBeanDefinitionRegistry.md)
     - [BeanNameGenerator](/docs/beans/factory/BeanFactory/support/Spring-BeanNameGenerator.md)
 
     - [NamespaceHandler导读](/docs/beans/factory/xml/NamespaceHandler/readme.md)
@@ -117,6 +120,14 @@
         - [ProblemReporter](/docs/beans/factory/parsing/ProblemReporter/Spring-ProblemReporter.md)
     - SourceExtractor
         - [SourceExtractor](/docs/beans/factory/parsing/SourceExtractor/Spring-SourceExtractor.md)
+
+    - XmlBeanFactory
+        - [XmlBeanFactory](/docs/beans/factory/xml/Spring-XmlBeanFactory.md)
+    - XmlBeanDefinitionReader
+        - [XmlBeanDefinitionReader](/docs/beans/factory/xml/Spring-XmlBeanDefinitionReader.md)
+    - DocumentLoader
+        - [DefaultDocumentLoader](/docs/beans/factory/xml/DocumentLoader/Spring-DefaultDocumentLoader.md)
+        - [DocumentLoader](/docs/beans/factory/xml/DocumentLoader/Spring-DocumentLoader.md)
 
 
 - Spring Core
@@ -172,6 +183,8 @@
         - ResourcePatternResolver
           - [PathMatchingResourcePatternResolver](/docs/core/io/ResourcePatternResolver/Spring-PathMatchingResourcePatternResolver.md)
           - [ResourcePatternResolver](/docs/core/io/ResourcePatternResolver/Spring-ResourcePatternResolver.md)
+    - [Constants](/docs/core/Spring-Constants.md)
+    
 
 - Spring Env
     - [PropertyResolver](/docs/env/PropertyResolver/Readme.md)
