@@ -106,9 +106,17 @@
         - [DefaultNamespaceHandlerResolver](/docs/beans/factory/xml/NamespaceHandlerResolver/Spring-DefaultNamespaceHandlerResolver.md)
         - [NamespaceHandlerResolver](/docs/beans/factory/xml/NamespaceHandlerResolver/Spring-NamespaceHandlerResolver.md)
 
-
-
-
+    - [BeanDefinitionDocumentReader](/docs/beans/factory/xml/BeanDefinitionDocumentReader/readme.md)
+        - [BeanDefinitionDocumentReader](/docs/beans/factory/xml/BeanDefinitionDocumentReader/Spring-BeanDefinitionDocumentReader.md)
+        - [DefaultBeanDefinitionDocumentReader](/docs/beans/factory/xml/BeanDefinitionDocumentReader/Spring-DefaultBeanDefinitionDocumentReader.md)
+    - ReaderContext
+        - [ReaderContext](/docs/beans/factory/xml/ReaderContext/Spring-ReaderContext.md)
+        - [XmlReaderContext](/docs/beans/factory/xml/ReaderContext/Spring-XmlReaderContext.md)
+    - ProblemReporter
+        - [Problem](/docs/beans/factory/parsing/ProblemReporter/Spring-Problem.md)
+        - [ProblemReporter](/docs/beans/factory/parsing/ProblemReporter/Spring-ProblemReporter.md)
+    - SourceExtractor
+        - [SourceExtractor](/docs/beans/factory/parsing/SourceExtractor/Spring-SourceExtractor.md)
 
 
 - Spring Core
