@@ -69,10 +69,10 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
 在成员变量中有如下接口或者类. 在本文不对这些进行分析. 下面列出接口及分析列表
 
-1. `BeanDefinitionRegistry`: bean定义注册接口，[分析文章](/doc/book/bean/factory/support/BeanDefinitionRegistry/readme.md)
-2. `ResourceLoader`:资源加载器, [分析文章](/doc/book/core/io/ResourceLoader/readme.md)
-3. `Environment`: 环境配置接口, [分析文章](/doc/book/env/environment/readme.md)
-4. `BeanNameGenerator`: beanName 生成器, [分析文章](/doc/book/bean/factory/support/Spring-BeanNameGenerator.md)
+1. `BeanDefinitionRegistry`: bean定义注册接口，[分析文章](/docs/beans/factory/BeanFactory/support/BeanDefinitionRegistry/readme.md)
+2. `ResourceLoader`:资源加载器, [分析文章](/docs/core/io/ResourceLoader/readme.md)
+3. `Environment`: 环境配置接口, [分析文章](/docs/env/environment/readme.md)
+4. `BeanNameGenerator`: beanName 生成器, [分析文章](/docs/beans/factory/BeanFactory/support/Spring-BeanNameGenerator.md)
 
 
 
@@ -190,4 +190,4 @@ public int loadBeanDefinitions(String location, @Nullable Set<Resource> actualRe
 
 
 
-有关于`AbstractBeanDefinitionReader` 中 `loadBeanDefinitions` 的更多细节方法在子类上有所体现, 请查看[XmlBeanDefinitionReader](/doc/book/bean/factory/xml/Spring-XmlBeanDefinitionReader.md)类的分析来进行了解
+有关于`AbstractBeanDefinitionReader` 中 `loadBeanDefinitions` 的更多细节方法在子类上有所体现, 请查看[XmlBeanDefinitionReader](/docs/beans/factory/xml/Spring-XmlBeanDefinitionReader.md)类的分析来进行了解

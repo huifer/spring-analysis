@@ -273,3 +273,53 @@ public BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefini
    return bd;
 }
 ```
+
+
+
+
+
+
+### destroySingletons
+- 方法签名: `org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons`
+
+- 方法作用: 摧毁单例bean
+
+
+
+
+
+
+
+
+
+```java
+@Override
+public void destroySingletons() {
+   // 父类的摧毁方法
+   super.destroySingletons();
+   // 更新单例bean容器
+   updateManualSingletonNames(Set::clear, set -> !set.isEmpty());
+   // 清理类型缓存
+   clearByTypeCache();
+}
+```
+
+
+
+
+
+
+
+### clearByTypeCache
+
+- 方法签名: `org.springframework.beans.factory.support.DefaultListableBeanFactory#clearByTypeCache`
+- 方法作用: 清除两个根类型相关的缓存容器
+
+
+
+```java
+private void clearByTypeCache() {
+   this.allBeanNamesByType.clear();
+   this.singletonBeanNamesByType.clear();
+}j
+```
