@@ -14,7 +14,8 @@
     - [x] resolveDependency
     - [x] resolveMultipleBeans
     - [x] findAutowireCandidates
-  
+- [x] org.springframework.beans.factory.support.AbstractBeanDefinitionReader
+- [x] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
 
 - [ ] TargetSource
 - [ ] ProxyFactory
@@ -72,5 +73,12 @@
 
 
 ## 当前重要
-- [ ] org.springframework.beans.factory.support.AbstractBeanDefinitionReader
-- [ ] org.springframework.beans.factory.xml.XmlBeanDefinitionReader
+
+- [x] AbstractApplicationContext
+
+
+
+MessageSource
+LifecycleProcessor
+ApplicationEventMulticaster
+PostProcessorRegistrationDelegate

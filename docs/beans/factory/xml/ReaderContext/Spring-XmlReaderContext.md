@@ -29,7 +29,7 @@ public class XmlReaderContext extends ReaderContext {
 
 在`XmlReaderContext`中所提供的方法全部是由两个成员变量所提供. 本身的可读性很好, 在这不对每个方法进行分析. 重点阅读下面两篇文章
 
-1. [XmlBeanDefinitionReader](/doc/book/bean/factory/xml/Spring-XmlBeanDefinitionReader-未完成.md)
+1. [XmlBeanDefinitionReader](/docs/beans/factory/xml/Spring-XmlBeanDefinitionReader.md)
 2. [NamespaceHandlerResolver](/docs/beans/factory/xml/NamespaceHandlerResolver/Spring-NamespaceHandlerResolver.md)
 
 

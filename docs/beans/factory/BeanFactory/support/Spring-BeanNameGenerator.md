@@ -25,7 +25,7 @@ public interface BeanNameGenerator {
 
 
 
-![](/images/BeanNameGenerator.png)
+![](./images/BeanNameGenerator.png)
 
 
 
