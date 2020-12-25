@@ -92,7 +92,12 @@
       - [ApplicationContext](/docs/core/context/ApplicationContext/Spring-ApplicationContext.md)
       - [ConfigurableListableBeanFactory](/docs/beans/factory/BeanFactory/Spring-ConfigurableListableBeanFactory.md)
         - [AbstractApplicationContext](/docs/core/context/ApplicationContext/Spring-AbstractApplicationContext.md)
-    
+          - [AbstractRefreshableApplicationContext](/docs/core/context/support/Spring-AbstractRefreshableApplicationContext.md)
+            - [AbstractRefreshableConfigApplicationContext](/docs/core/context/support/Spring-AbstractRefreshableConfigApplicationContext.md)
+              - [AbstractXmlApplicationContext](/docs/core/context/support/Spring-AbstractXmlApplicationContext.md)
+                - [FileSystemXmlApplicationContext](/docs/core/context/support/Spring-FileSystemXmlApplicationContext.md)
+                - [ClassPathXmlApplicationContext](/docs/core/context/support/Spring-ClassPathXmlApplicationContext.md)
+
 
 
 
@@ -203,6 +208,10 @@
 - [SimpleAliasRegistry](/docs/core/registry/Spring-SimpleAliasRegistry.md)
 - [SingletonBeanRegistry](/docs/core/registry/Spring-SingletonBeanRegistry.md)
 - [BeanDefinitionRegistry](/docs/beans/factory/BeanFactory/support/Spring-BeanDefinitionRegistry.md)
+
+#### Spring PostProcessorRegistrationDelegate
+
+- [PostProcessorRegistrationDelegate](/docs/core/context/Spring-PostProcessorRegistrationDelegate.md)
 
 
 #### Spring Convert 相关分析
