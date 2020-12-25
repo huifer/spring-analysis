@@ -58,6 +58,12 @@
             - [ApplicationContext](/docs/core/context/ApplicationContext/Spring-ApplicationContext.md)
                 - [ConfigurableApplicationContext](/docs/core/context/ApplicationContext/Spring-ConfigurableApplicationContext.md)
                     - [AbstractApplicationContext](/docs/core/context/ApplicationContext/Spring-AbstractApplicationContext.md)
+                        - [AbstractRefreshableApplicationContext](/docs/core/context/support/Spring-AbstractRefreshableApplicationContext.md)
+                            - [AbstractRefreshableConfigApplicationContext](/docs/core/context/support/Spring-AbstractRefreshableConfigApplicationContext.md)
+                                - [AbstractXmlApplicationContext](/docs/core/context/support/Spring-AbstractXmlApplicationContext.md)
+                                    - [FileSystemXmlApplicationContext](/docs/core/context/support/Spring-FileSystemXmlApplicationContext.md)
+                                    - [ClassPathXmlApplicationContext](/docs/core/context/support/Spring-ClassPathXmlApplicationContext.md)
+
         - [SimpleJndiBeanFactory](/docs/beans/factory/BeanFactory/impl/Spring-SimpleJndiBeanFactory.md)
         - [AutowireCapableBeanFactory](/docs/beans/factory/BeanFactory/Spring-AutowireCapableBeanFactory.md)
             - [ConfigurableListableBeanFactory](/docs/beans/factory/BeanFactory/Spring-ConfigurableListableBeanFactory.md)
