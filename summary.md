@@ -153,6 +153,8 @@
 
 
 - Spring Core
+    - [PostProcessorRegistrationDelegate](/docs/core/context/Spring-PostProcessorRegistrationDelegate.md)
+
     - context
         - applicationContext
           - [AbstractApplicationContext](/docs/core/context/ApplicationContext/Spring-AbstractApplicationContext.md)

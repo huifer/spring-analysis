@@ -209,6 +209,10 @@
 - [SingletonBeanRegistry](/docs/core/registry/Spring-SingletonBeanRegistry.md)
 - [BeanDefinitionRegistry](/docs/beans/factory/BeanFactory/support/Spring-BeanDefinitionRegistry.md)
 
+#### Spring PostProcessorRegistrationDelegate
+
+- [PostProcessorRegistrationDelegate](/docs/core/context/Spring-PostProcessorRegistrationDelegate.md)
+
 
 #### Spring Convert 相关分析
 
