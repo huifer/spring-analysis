@@ -4,4 +4,4 @@
 
 
 - [prepareBeanFactory](prepareBeanFactory.xmind)
-![prepareBeanFactory](images/prepareBeanFactory.png)
+![prepareBeanFactory](images/ClassPathXmlApplicationContext.png)
