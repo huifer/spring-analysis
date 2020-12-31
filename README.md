@@ -195,11 +195,17 @@
 
 ### SpringCore相关分析
 
+#### 注解相关
+- [ClassPathBeanDefinitionScanner](/docs/core/context/annotation/Spirng-ClassPathBeanDefinitionScanner.md)
+- [AnnotatedBeanDefinitionReader](/docs/core/context/annotation/Spring-AnnotatedBeanDefinitionReader.md)
+- [AnnotationConfigUtils](/docs/core/context/annotation/Spring-AnnotationConfigUtils.md)
+- [ClassPathScanningCandidateComponentProvider](/docs/core/context/annotation/Spring-ClassPathScanningCandidateComponentProvider-未完成.md)
+
 #### Spring ApplicationContext 相关分析
 - [AbstractApplicationContext](/docs/core/context/ApplicationContext/Spring-AbstractApplicationContext.md)
 - [ApplicationContext](/docs/core/context/ApplicationContext/Spring-ApplicationContext.md)
 - [ConfigurableApplicationContext](/docs/core/context/ApplicationContext/Spring-ConfigurableApplicationContext.md)
-
+- [注解环境下的应用上下文](/docs/core/context/annotation/Spring-annotation-start.md)
 
 #### Spring Registry 相关分析
 
