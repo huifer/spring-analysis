@@ -154,7 +154,11 @@
 
 - Spring Core
     - [PostProcessorRegistrationDelegate](/docs/core/context/Spring-PostProcessorRegistrationDelegate.md)
-
+    - 注解相关
+        - [ClassPathBeanDefinitionScanner](/docs/core/context/annotation/Spirng-ClassPathBeanDefinitionScanner.md)
+        - [AnnotatedBeanDefinitionReader](/docs/core/context/annotation/Spring-AnnotatedBeanDefinitionReader.md)
+        - [AnnotationConfigUtils](/docs/core/context/annotation/Spring-AnnotationConfigUtils.md)
+        - [ClassPathScanningCandidateComponentProvider](/docs/core/context/annotation/Spring-ClassPathScanningCandidateComponentProvider-未完成.md)
     - context
         - applicationContext
           - [AbstractApplicationContext](/docs/core/context/ApplicationContext/Spring-AbstractApplicationContext.md)
