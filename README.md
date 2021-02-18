@@ -375,5 +375,5 @@
 
 | 支付宝  | 微信公众号 |
 | ------  | ---------- |
-| ![支付宝](image/B9DA7CEBD5A48F601E742B348C96260F.jpg) |                 |
+| ![支付宝](image/B9DA7CEBD5A48F601E742B348C96260F.jpg) |     ![微信公众号](images/qrcode_for_gh_27c1888eaf96_344.jpg)            |
 
