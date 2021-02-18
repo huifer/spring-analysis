@@ -10,7 +10,7 @@
 
 我们本章的主要目标是分析注解模式下 Bean Name 的生成策略，我们需要通过 `BeanNameGenerator` 接口找到负责处理注解模式下 Bean Name 生成策略的具体对象。我们先来看看 `BeanNameGenerator` 类图。
 
-![BeanNameGenerator](/images/BeanNameGenerator.png)
+![BeanNameGenerator](./images/BeanNameGenerator.png)
 
 在这个类途中我们可以找到可能的对象是 `AnnotationBeanNameGenerator`，下面我们来看其中的处理方法
 

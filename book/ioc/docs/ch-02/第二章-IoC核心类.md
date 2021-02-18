@@ -10,15 +10,15 @@
 
 首先来看**`ClassPathXmlApplicationContext`** 类图
 
-![ClassPathXmlApplicationContext](/docs/ch-02/images/ClassPathXmlApplicationContext.png)
+![ClassPathXmlApplicationContext](./images/ClassPathXmlApplicationContext.png)
 
 其次来看**`FileSystemXmlApplicationContext`** 类图
 
-![FileSystemXmlApplicationContext](/docs/ch-02/images/FileSystemXmlApplicationContext.png)
+![FileSystemXmlApplicationContext](./images/FileSystemXmlApplicationContext.png)
 
 最终来看 **`XmlBeanFactory`** 类图
 
-![XmlBeanFactory](/docs/ch-02/images/XmlBeanFactory.png)
+![XmlBeanFactory](./images/XmlBeanFactory.png)
 
 
 

@@ -302,7 +302,7 @@ private Set<BeanDefinition> scanCandidateComponents(String basePackage) {
 
 - 步骤一得到的结果
 
-![image-20210202132927182](/docs/ch-17/images/image-20210202132927182.png)
+![image-20210202132927182](./images/image-20210202132927182.png)
 
 
 
@@ -316,7 +316,7 @@ getResourcePatternResolver().getResources(packageSearchPath)
 
 - 收集后的结果
 
-![image-20210202133502190](/docs/ch-17/images/image-20210202133502190.png)
+![image-20210202133502190](./images/image-20210202133502190.png)
 
 通过截图我们可以看到此时出现的数据是两种，第一种：文件形式的资源对象，第二种：Jar 形式的资源对象，接下来我们就需要对这两种资源进行转换，将其转换为 Bean Definition。
 
@@ -324,7 +324,7 @@ getResourcePatternResolver().getResources(packageSearchPath)
 
 - `metadataReader` 数据信息 
 
-![image-20210202134118672](/docs/ch-17/images/image-20210202134118672.png) 
+![image-20210202134118672](./images/image-20210202134118672.png) 
 
 我们现在得到的 `metadataReader` 在下面的操作中很重要，它可以帮我们转换成 Bean Definition，同时也可以帮助我们判断是否可以进行转换等一些操作。那么我们就跟着源码先来看第一个步骤：是否是 `Component`
 
@@ -355,13 +355,13 @@ protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOE
 
 - `includeFilters` 数据信息
 
-![image-20210202134734224](/docs/ch-17/images/image-20210202134734224.png)
+![image-20210202134734224](./images/image-20210202134734224.png)
 
 看过了`includeFilters` 的数据内容后，我们来看 `MetadataReaderFactory` 的数据信息
 
 - `MetadataReaderFactory` 数据信息
 
-![image-20210202135011606](/docs/ch-17/images/image-20210202135011606.png)
+![image-20210202135011606](./images/image-20210202135011606.png)
 
 
 
@@ -371,7 +371,7 @@ protected boolean isCandidateComponent(MetadataReader metadataReader) throws IOE
 
 - `ScannedGenericBeanDefinition` 数据信息
 
-![image-20210202135655436](/docs/ch-17/images/image-20210202135655436.png)
+![image-20210202135655436](./images/image-20210202135655436.png)
 
 现在我们拥有了 Bean Definition 还需要做最后一件事：**判断是否候选**，只有通过候选判断的 Bean Definition 才可以放入候选集合最后返回。下面我们来看候选方法的内容。
 
@@ -531,7 +531,7 @@ for (BeanDefinition candidate : candidates) {
 
 处理 Scope 会将数据填写到 `scope` 字敦中
 
-![image-20210202142159096](/docs/ch-17/images/image-20210202142159096.png)
+![image-20210202142159096](./images/image-20210202142159096.png)
 
 笔者将 `ScopeMetadataResolver` 的分析放在第二十一章中进行
 
@@ -568,7 +568,7 @@ public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry
 
 在了解了处理方式后我们来看对象的处理结果
 
-![image-20210202144024299](/docs/ch-17/images/image-20210202144024299.png)
+![image-20210202144024299](./images/image-20210202144024299.png)
 
 
 
@@ -584,13 +584,13 @@ public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry
 
 - 填充前 Bean Definition 数据
 
-![image-20210202144156766](/docs/ch-17/images/image-20210202144156766.png)
+![image-20210202144156766](./images/image-20210202144156766.png)
 
 
 
 - 填充后 Bean Definition 数据
 
-![image-20210202144232188](/docs/ch-17/images/image-20210202144232188.png) 
+![image-20210202144232188](./images/image-20210202144232188.png) 
 
 从执行前后对比来看似乎没有多少数据被填充额外数据。下面我们来看 `postProcessBeanDefinition` 方法中的代码来确定到底哪些数据会被填充。
 
@@ -836,19 +836,19 @@ public static void registerBeanDefinition(
 
 - 解析后的上下文数据
 
-![image-20210202165805655](/docs/ch-17/images/image-20210202165805655.png)
+![image-20210202165805655](./images/image-20210202165805655.png)
 
 这张图片的数据是在`new AnnotationConfigApplicationContext` 之后得到的，我们在 `scan` 阶段得到的数据只有 `annBeans` 这个 Bean Definition。
 
 - `scan` 执行后的数据信息
 
-![image-20210203083304886](/docs/ch-17/images/image-20210203083304886.png)
+![image-20210203083304886](./images/image-20210203083304886.png)
 
 通过这两个对比我们发现 Bean Definition 的设置应该是在 `refresh` 中，在 `refresh` 方法中有一个处理 `BeanFactoryPostProcessor` 的方法（处理方法：`invokeBeanFactoryPostProcessors(beanFactory)`），也就是在这个方法执行之后我们可以看到出现了`annPeople` 的 Bean Definition 描述，下面我们将断点放在该方法之后来看看数据信息。
 
 - `invokeBeanFactoryPostProcessors(beanFactory)` 调用后的数据
 
-![image-20210203100726336](/docs/ch-17/images/image-20210203100726336.png)
+![image-20210203100726336](./images/image-20210203100726336.png)
 
 在这里我们需要关注 `org.springframework.context.annotation.ConfigurationClassPostProcessor` 对象的一些处理方式。关于这个对象的分析笔者将在第二十三章中进行分析。现在我们就只需要知道通过 `ConfigurationClassPostProcessor` 类的处理可以将 Spring 的 `@Bean` 注入到 Spring 容器中即可。
 
@@ -974,13 +974,13 @@ public AnnotatedGenericBeanDefinition(Class<?> beanClass) {
 
 
 
-![image-20210203110959933](/docs/ch-17/images/image-20210203110959933.png)
+![image-20210203110959933](./images/image-20210203110959933.png)
 
 在这张图中我们可以简单的看到一些相对敏感的一些数据，这些内容笔者会在后续章节中一点点拨开，现在我们只需要知道 `metadata` 存了Bean Class 和 Spring 的注解信息就可以了。
 
 通过这里整个方法的处理我们就会得到 Bean Definition Holder ，下面我们来简单看看当前的 Bean Definition Holder 的数据情况
 
-![image-20210203111410114](/docs/ch-17/images/image-20210203111410114.png)
+![image-20210203111410114](./images/image-20210203111410114.png)
 
 通过这样的方式就可以进行 `@Component` 标记的类注册到 Spring 容器中了，当我们完成了 `register` 方法后就会进入 `refresh` 方法，在整个`refresh` 方法中处理模式和 Spring XML 大同小异，这里我们会重点关注前文提到的 `ConfigurationClassPostProcessor` 对象。
 

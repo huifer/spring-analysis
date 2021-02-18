@@ -171,7 +171,7 @@ if (containingBean == null) {
 
 根据前文分析此时的 Bean Name 应该是 `people` 。进入调试阶段笔者在这里直接截图展示当前的 Bean Name。
 
-![image-20210107100916731](/docs/ch-06/images/image-20210107100916731.png)
+![image-20210107100916731](./images/image-20210107100916731.png)
 
 
 
@@ -185,7 +185,7 @@ if (containingBean == null) {
 
 根据前文分析此时的 Bean Name 应该是 `peopleBean` 。进入调试阶段笔者在这里直接截图展示当前的 Bean Name。
 
-![image-20210107101218124](/docs/ch-06/images/image-20210107101218124.png)
+![image-20210107101218124](./images/image-20210107101218124.png)
 
 
 
@@ -199,7 +199,7 @@ if (containingBean == null) {
 
 根据前文分析此时的 Bean Name 应该是 `p1` 。进入调试阶段笔者在这里直接截图展示当前的 Bean Name。
 
-![image-20210107101434927](/docs/ch-06/images/image-20210107101434927.png)
+![image-20210107101434927](./images/image-20210107101434927.png)
 
 
 
@@ -406,7 +406,7 @@ public static AbstractBeanDefinition createBeanDefinition(
 
 - 执行 `createBeanDefinition` 方法后的信息
 
-![image-20210107110414401](/docs/ch-06/images/image-20210107110414401.png)
+![image-20210107110414401](./images/image-20210107110414401.png)
 
 在这个截图中我们可以看到 `beanClass` 还是一个字符串状态。
 
@@ -567,7 +567,7 @@ private final DocumentDefaultsDefinition defaults = new DocumentDefaultsDefiniti
 
 - `parseBeanDefinitionAttributes` 处理后的 Bean Definition 
 
-![image-20210107111637003](/docs/ch-06/images/image-20210107111637003.png)
+![image-20210107111637003](./images/image-20210107111637003.png)
 
 
 
@@ -599,7 +599,7 @@ bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMEN
 
 - 经过设置描述信息后的 Bean Definition
 
-![image-20210107112400725](/docs/ch-06/images/image-20210107112400725.png)
+![image-20210107112400725](./images/image-20210107112400725.png)
 
 
 
@@ -654,7 +654,7 @@ public void parseMetaElements(Element ele, BeanMetadataAttributeAccessor attribu
 
 - `AbstractBeanDefinition` 类图
 
-  ![AbstractBeanDefinition](/docs/ch-06/images/AbstractBeanDefinition.png)
+  ![AbstractBeanDefinition](./images/AbstractBeanDefinition.png)
 
 在类图中我们可以直观的看到 `AbstractBeanDefinition` 是 `BeanMetadataAttributeAccessor` 的子类。这就好办了，对于 `BeanMetadataAttributeAccessor` 的设置其实就是为 `AbstractBeanDefinition` 添加属性。
 
@@ -666,7 +666,7 @@ public void parseMetaElements(Element ele, BeanMetadataAttributeAccessor attribu
 
 - 经过 `parseMetaElements`  方法后的 Bean Definition
 
-![image-20210107113518568](/docs/ch-06/images/image-20210107113518568.png)
+![image-20210107113518568](./images/image-20210107113518568.png)
 
 
 
@@ -800,7 +800,7 @@ public void parseLookupOverrideSubElements(Element beanEle, MethodOverrides over
 
 
 - 经过 `parseLookupOverrideSubElements` 方法调用后 Bean Definition 的信息
- ![image-20210107131205214](/docs/ch-06/images/image-20210107131205214.png)
+ ![image-20210107131205214](./images/image-20210107131205214.png)
 
 
 
@@ -810,13 +810,13 @@ public void parseLookupOverrideSubElements(Element beanEle, MethodOverrides over
 
 - `shop` 对象信息
 
-![image-20210107131708569](/docs/ch-06/images/image-20210107131708569.png)
+![image-20210107131708569](./images/image-20210107131708569.png)
 
 这一点区别于我们常见的如本例中 `apple` 这个 Bean . 
 
 - `apple` 对象信息
 
-  ![image-20210107131817195](/docs/ch-06/images/image-20210107131817195.png)
+  ![image-20210107131817195](./images/image-20210107131817195.png)
 
 
 
@@ -855,7 +855,7 @@ public Object intercept(Object obj, Method method, Object[] args, MethodProxy mp
 
 还记得我们存入 `LookupOverride` 中的信息吗？不记得的话可以看看下面这个截图
 
-![image-20210107132416881](/docs/ch-06/images/image-20210107132416881.png)
+![image-20210107132416881](./images/image-20210107132416881.png)
 
 哦~这下子都明白了，Spring 在这个阶段会将 `beanName` 从容器中获取对应的实例，将这个实例作为返回值。也正是通过这样的一个动态代理技术( Spring 在这里采用的 CGLIB ) 技术改变了返回值。
 
@@ -973,7 +973,7 @@ public void parseReplacedMethodSubElements(Element beanEle, MethodOverrides over
 
 - 执行 `parseReplacedMethodSubElements` 方法后的 Bean Definition
 
-  ![image-20210107134913572](/docs/ch-06/images/image-20210107134913572.png)
+  ![image-20210107134913572](./images/image-20210107134913572.png)
 
 
 
@@ -981,7 +981,7 @@ public void parseReplacedMethodSubElements(Element beanEle, MethodOverrides over
 
 首先看 `apple` 这个对象是什么
 
-![image-20210107135216085](/docs/ch-06/images/image-20210107135216085.png)
+![image-20210107135216085](./images/image-20210107135216085.png)
 
 从图中可以发现 `apple` 是一个代理对象，在这个截图中我们可以看到一个叫做 `ReplaceOverrideMethodInterceptor` 的名字，这个就是我们真正需要找到的目标，在 `ReplaceOverrideMethodInterceptor` 中藏有真正的方法执行过程。
 
@@ -1002,7 +1002,7 @@ public Object intercept(Object obj, Method method, Object[] args, MethodProxy mp
 
 在这个方法中 Spring 根据 `method` 进行 `ReplaceOverride` 的搜索，在这 `ReplaceOverride` 就是我们前面提到的标签解析的结果
 
-![image-20210107135501672](/docs/ch-06/images/image-20210107135501672.png)
+![image-20210107135501672](./images/image-20210107135501672.png)
 
 回过头我们来看看一开始的配置文件:  `spring-replaced-method.xml` 
 
@@ -1175,11 +1175,11 @@ catch (NumberFormatException ex) {
 
 - `type` 和 `value` 的存储
 
-  ![image-20210107145210644](/docs/ch-06/images/image-20210107145210644.png)
+  ![image-20210107145210644](./images/image-20210107145210644.png)
 
 - `index` 、`type` 和 `value` 的存储
 
-  ![image-20210107145257472](/docs/ch-06/images/image-20210107145257472.png)
+  ![image-20210107145257472](./images/image-20210107145257472.png)
 
 
 
@@ -1253,13 +1253,13 @@ finally {
 
 - 非 `index` 模式下的 `valueHolder` 对象
 
-  ![image-20210107160926730](/docs/ch-06/images/image-20210107160926730.png)
+  ![image-20210107160926730](./images/image-20210107160926730.png)
 
 
 
 在这个方法最后我们来看看 Bean Definition 的对象信息
 
-![image-20210107161014020](/docs/ch-06/images/image-20210107161014020.png)
+![image-20210107161014020](./images/image-20210107161014020.png)
 
 
 
@@ -1267,7 +1267,7 @@ finally {
 
 信息全部准备完成了，笔者此时存在一个问题：构造函数的信息都准备完成完毕如何使用？笔者在这儿仅做一个方法的标记，各位读者可以根据需要展开阅读。
 
-处理方法是 ： `org.springframework.beans.BeanUtils#instantiateClass(java.lang.reflect.Constructor<T>, java.lang.Object...)` 这是最底层的一个方法，再往外可以看到跟多的细节，下图是一个调用堆栈![image-20210107161512489](/docs/ch-06/images/image-20210107161512489.png)
+处理方法是 ： `org.springframework.beans.BeanUtils#instantiateClass(java.lang.reflect.Constructor<T>, java.lang.Object...)` 这是最底层的一个方法，再往外可以看到跟多的细节，下图是一个调用堆栈![image-20210107161512489](./images/image-20210107161512489.png)
 
 
 
@@ -1591,7 +1591,7 @@ public class PeopleBean {
 
 
 
-找到 `list` 标签的解析方法 `parseListElement` 这里需要提一点对于 `list` 、`array` 、`set` 的处理最终都是交给 `parseCollectionElements` 来获取最终数据的，在这里就是用来解析 `value` 标签中的字符串量, 下面我们来看经过 `parseListElement` 方法处理后的结果![image-20210108094305469](/docs/ch-06/images/image-20210108094305469.png)
+找到 `list` 标签的解析方法 `parseListElement` 这里需要提一点对于 `list` 、`array` 、`set` 的处理最终都是交给 `parseCollectionElements` 来获取最终数据的，在这里就是用来解析 `value` 标签中的字符串量, 下面我们来看经过 `parseListElement` 方法处理后的结果![image-20210108094305469](./images/image-20210108094305469.png)
 
 
 
@@ -1599,7 +1599,7 @@ public class PeopleBean {
 
 在处理 `list` 标签的时候我们采取的是字面量得到的对象类型是 `TypedStringValue` ，在 `map` 标签处理中用到的也是这个类型，只不过是从 `list` 存储转换成 `map` 存储。下面我们来看处理后的结果
 
-![image-20210108100042152](/docs/ch-06/images/image-20210108100042152.png)
+![image-20210108100042152](./images/image-20210108100042152.png)
 
 关于各类子标签的细节处理笔者没有在这里展开描述每个方法及方法中的细节，各位读者需要自行阅读。
 
@@ -1749,7 +1749,7 @@ public void parseQualifierElement(Element ele, AbstractBeanDefinition bd) {
 
 这个解析过程就是对 `qualifier` 标签提取各个属性值然后转换成 Java 对象，对应 `qualifier` 标签的 Java 对象是 `AutowireCandidateQualifier` 下面我们来看看解析的结果是什么样子的。
 
-![image-20210108105829769](/docs/ch-06/images/image-20210108105829769.png)
+![image-20210108105829769](./images/image-20210108105829769.png)
 
 上图便是经过计算后 `qualifier` 标签解析后的 Java 对象。
 
@@ -1763,13 +1763,13 @@ public void parseQualifierElement(Element ele, AbstractBeanDefinition bd) {
 
 - `resource` 信息
 
-  ![image-20210108111206299](/docs/ch-06/images/image-20210108111206299.png)
+  ![image-20210108111206299](./images/image-20210108111206299.png)
 
 理解了 `Resource` 对象在 Spring 中的含义下面我们来对 `source` 对象进行了解。在 Spring 中对于 `source` 提供了专门的解析工具 (解析类 `SourceExtractor` ) ， 下面我们先来看看 Spring 中提供的解析工具有哪些实现类，实现类中分别做了什么。
 
 - `SourceExtractor` 类图
 
-  ![SourceExtractor](/docs/ch-06/images/SourceExtractor.png)
+  ![SourceExtractor](./images/SourceExtractor.png)
 
 Spring 中提供了两个关于 `SourceExtractor` 的实现方式。
 
@@ -1778,7 +1778,7 @@ Spring 中提供了两个关于 `SourceExtractor` 的实现方式。
 
 在 `bean` 标签解析的过程中 `SourceExtractor` 的具体实现类是 `NullSourceExtractor` 所以在设置 Bean Definition 的 `source` 属性是设置的数据是 `null`
 
-![image-20210108111748982](/docs/ch-06/images/image-20210108111748982.png)
+![image-20210108111748982](./images/image-20210108111748982.png)
 
 
 
@@ -1955,7 +1955,7 @@ BeanDefinitionHolder decorated =
       handler.decorate(node, originalDef, new ParserContext(this.readerContext, this, containingBd));
 ```
 
-这段方法最终会调用我们所编辑的 `UserXsdNamespaceHandler#decorate` 方法。下面我们来看一下经过装饰后的 Bean Definition ![image-20210108140520348](/docs/ch-06/images/image-20210108140520348.png)
+这段方法最终会调用我们所编辑的 `UserXsdNamespaceHandler#decorate` 方法。下面我们来看一下经过装饰后的 Bean Definition ![image-20210108140520348](./images/image-20210108140520348.png)
 
 
 
@@ -1971,7 +1971,7 @@ BeanDefinitionHolder decorated =
 
 在这一节中笔者会将 Bean Definition 中的各个属性进行列举。下面我们先来看 Bean Definition 的类图
 
-![BeanDefinition](/docs/ch-06/images/BeanDefinition.png)
+![BeanDefinition](./images/BeanDefinition.png)
 
 
 

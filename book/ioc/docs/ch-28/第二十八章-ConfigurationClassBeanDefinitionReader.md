@@ -269,7 +269,7 @@ private void loadBeanDefinitionsForConfigurationClass(
 
 - `BeanMethod` 信息
 
-![image-20210208112334225](/docs/ch-28/images/image-20210208112334225.png)
+![image-20210208112334225](./images/image-20210208112334225.png)
 
 现在我们可以通过这个截图了解到其中的数据信息也可以大概猜测出一些数据的含义，各位可能回对数据是如何产生的有疑问，这部分内容会在二十九章中和各位一起探讨。
 
@@ -502,7 +502,7 @@ void testAnnImportConfiguration() {
 
 
 
-![image-20210208142936127](/docs/ch-28/images/image-20210208142936127.png)
+![image-20210208142936127](./images/image-20210208142936127.png)
 
 
 
@@ -626,7 +626,7 @@ public class ImportResourceBeansTest {
 
 测试用例准备完毕，下面我们先来看 `importedResources` 容器中的数据信息
 
-![image-20210208150615297](/docs/ch-28/images/image-20210208150615297.png)
+![image-20210208150615297](./images/image-20210208150615297.png)
 
 
 
@@ -792,7 +792,7 @@ void testImportBeanDefinitionRegistrar() {
 
 - `importBeanDefinitionRegistrars` 数据信息
 
-![image-20210208163141104](/docs/ch-28/images/image-20210208163141104.png)
+![image-20210208163141104](./images/image-20210208163141104.png)
 
 
 

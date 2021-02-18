@@ -188,7 +188,7 @@ protected Integer findOrder(Object obj) {
 
 - SourceClass 类图
 
-![SourceClass](/images/SourceClass.png)
+![SourceClass](./images/SourceClass.png)
 
 下面我们来看 `SourceClass` 对 `Ordered` 的实现
 

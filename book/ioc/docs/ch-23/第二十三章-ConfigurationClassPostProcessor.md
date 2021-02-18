@@ -372,7 +372,7 @@ public class AnnBeans {
 
 - `configCandidates` 候选容器数据
 
-![image-20210205135355594](/docs/ch-23/images/image-20210205135355594.png)
+![image-20210205135355594](./images/image-20210205135355594.png)
 
 
 
@@ -625,11 +625,11 @@ protected void processConfigurationClass(ConfigurationClass configClass) throws 
 
 - 执行前
 
-  ![image-20210205163139577](/docs/ch-23/images/image-20210205163139577.png)
+  ![image-20210205163139577](./images/image-20210205163139577.png)
 
 - 执行后
 
-  ![image-20210205163211209](/docs/ch-23/images/image-20210205163211209.png)
+  ![image-20210205163211209](./images/image-20210205163211209.png)
 
 
 
@@ -733,11 +733,11 @@ alreadyParsed.addAll(configClasses);
 
 - 执行前
 
-![image-20210207093319724](/docs/ch-23/images/image-20210207093319724.png)
+![image-20210207093319724](./images/image-20210207093319724.png)
 
 - 执行后
 
-![image-20210207093333020](/docs/ch-23/images/image-20210207093333020.png)
+![image-20210207093333020](./images/image-20210207093333020.png)
 
 
 
@@ -779,11 +779,11 @@ alreadyParsed.addAll(configClasses);
 
 - `candidateNames` 数据信息
 
-![image-20210207094633833](/docs/ch-23/images/image-20210207094633833.png)
+![image-20210207094633833](./images/image-20210207094633833.png)
 
 - 执行到判读语句时容器中的 Bean Definition Name 情况
 
-![image-20210207094731229](/docs/ch-23/images/image-20210207094731229.png)
+![image-20210207094731229](./images/image-20210207094731229.png)
 
 
 
@@ -793,13 +793,13 @@ alreadyParsed.addAll(configClasses);
 
 - `alreadyParsed` 数据信息
 
-![image-20210207100113664](/docs/ch-23/images/image-20210207100113664.png)
+![image-20210207100113664](./images/image-20210207100113664.png)
 
 继续往下通过循环将 `configurationClass` 的数据进一步提取，提取类全路径，即解析过的类全类名提取加入到 `alreadyParsedClasses` 中。
 
 - `alreadyParsedClasses` 数据信息
 
-![image-20210207100243589](/docs/ch-23/images/image-20210207100243589.png)
+![image-20210207100243589](./images/image-20210207100243589.png)
 
 
 
@@ -984,7 +984,7 @@ public void enhanceConfigurationClasses(ConfigurableListableBeanFactory beanFact
 
 了解了第一件事的处理逻辑后欧美来看处理后的数据存储情况
 
-![image-20210207112616586](/docs/ch-23/images/image-20210207112616586.png) 
+![image-20210207112616586](./images/image-20210207112616586.png) 
 
 目前我们的 Bean Definition 是不满足条件的，目前不满足条件的原因是 `ConfigurationClassUtils.CONFIGURATION_CLASS_FULL.equals(configClassAttr)` ，我们来看看这个值的设置，设置  `CONFIGURATION_CLASS_ATTRIBUTE` 属性在 `checkConfigurationClassCandidate` 中有相关处理，这部分处理操作的入口是  `postProcessBeanDefinitionRegistry` ，这里我们对于方法的执行顺序又做了一次强调。
 
@@ -1002,7 +1002,7 @@ else if (config != null || isConfigurationCandidate(metadata)) {
 
 - 测试用例中`AnnBeans` 的属性 
 
-![image-20210207113053806](/docs/ch-23/images/image-20210207113053806.png)
+![image-20210207113053806](./images/image-20210207113053806.png)
 
 
 

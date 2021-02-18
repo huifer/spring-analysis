@@ -73,7 +73,7 @@ class ConvertTest {
 
 在这个例子中我们希望通过字符串分割后第一部分作为 `Product` 的名称, 第二部分作为 `Product` 的价格。从测试用例中我们可以看到下面的结果
 
-![image-20210120131934246](/docs/ch-11/images/image-20210120131934246.png)
+![image-20210120131934246](./images/image-20210120131934246.png)
 
 
 
@@ -208,7 +208,7 @@ public void addConverter(Converter<?, ?> converter) {
 
 - `typeInfo` 信息
 
-  ![image-20210121101801716](/docs/ch-11/images/image-20210121101801716.png)
+  ![image-20210121101801716](./images/image-20210121101801716.png)
 
 
 
@@ -222,7 +222,7 @@ public void addConverter(Converter<?, ?> converter) {
 
 - `ConverterAdapter` 类图
 
-  ![ConverterAdapter](/docs/ch-11/images/ConverterAdapter.png)
+  ![ConverterAdapter](./images/ConverterAdapter.png)
 
 
 
@@ -350,7 +350,7 @@ public void add(GenericConverter converter) {
 
 第一行代码：`converter.getConvertibleTypes();`  这段代码是从 `ConverterAdapter` 中获取它的 `typeInfo` 信息，下面我们来看我们的测试用例在这个阶段的到的结果是什么
 
-![image-20210121110211450](/docs/ch-11/images/image-20210121110211450.png)
+![image-20210121110211450](./images/image-20210121110211450.png)
 
 当我们没有获取到 `convertibleTypes` 信息后会进行两种不同的操作。
 
@@ -376,13 +376,13 @@ private ConvertersForPair getMatchableConverters(ConvertiblePair convertiblePair
 
   在 `getMatchableConverters` 中的操作就是一个数据缓存的操作细节不多，我们来看执行完成这一步后我们的数据存储
 
-  ![image-20210121111220501](/docs/ch-11/images/image-20210121111220501.png)
+  ![image-20210121111220501](./images/image-20210121111220501.png)
 
   在执行完成 `getMatchableConverters` 之后 Spring 将对应关系会放在 `converters` 容器之中，但是现在 `value` 还没有数据。下面我们来看 value 的设置
 
 value 的设置依赖这个方法 `convertersForPair.add(converter)` 这也就是一个简单的 `add` 操作 执行后会向 `value->converters` 加入 `StringToProdut` 这个转换接口
 
-![image-20210121111454241](/docs/ch-11/images/image-20210121111454241.png)
+![image-20210121111454241](./images/image-20210121111454241.png)
 
 这样我们在前面定义的转换服务就成功注册到容器之中了，在 `converters` 中还有 Spring 的默认支持的转换服务这部分各位请自行查看。
 
@@ -447,13 +447,13 @@ public void addConverterFactory(ConverterFactory<?, ?> factory) {
 
 - `ConverterFactoryAdapter` 对象信息
 
-![image-20210121114449150](/docs/ch-11/images/image-20210121114449150.png)
+![image-20210121114449150](./images/image-20210121114449150.png)
 
 
 
 - 注册后的 `converters` 对象信息
 
-  ![image-20210121114539110](/docs/ch-11/images/image-20210121114539110.png)
+  ![image-20210121114539110](./images/image-20210121114539110.png)
 
 
 
@@ -571,7 +571,7 @@ public boolean isSingleton() {
 
 
 
-![image-20210121134623185](/docs/ch-11/images/image-20210121134623185.png)
+![image-20210121134623185](./images/image-20210121134623185.png)
 
 从这个调用堆栈中不难发现在执行 `context.getBean(ConversionService.class)` 最后会来 `getObject` 获取对象，这个对象就是 `DefaultConversionService` 。
 
@@ -592,7 +592,7 @@ Product convert1 = bean1.getObject().convert("product;10.00", Product.class);
 
 通过前面的分析我们找到了 `ConversionService` 的实际对象是 `GenericConversionService` ，那么在 `GenericConversionService` 对象中一定提供了对应的转换方法 `convert` ，确实通过搜索我们可以找到这个方法签名 `org.springframework.core.convert.support.GenericConversionService#convert(java.lang.Object, java.lang.Class<T>)` 它就是我们转换方法的核心
 
-![image-20210121143439182](/docs/ch-11/images/image-20210121143439182.png)
+![image-20210121143439182](./images/image-20210121143439182.png)
 
 从图中我们可以看到 `source` 和 `targetType` 就是那个我们传进去的参数，最终指向的方法签名 ：`org.springframework.core.convert.support.GenericConversionService#convert(java.lang.Object, org.springframework.core.convert.TypeDescriptor, org.springframework.core.convert.TypeDescriptor)`
 
@@ -731,7 +731,7 @@ public GenericConverter find(TypeDescriptor sourceType, TypeDescriptor targetTyp
 
 在这里我们先来看 `getClassHierarchy` 方法的作用，代码就不贴出来了。在 `getClassHierarchy` 中主要作用是将原始对象的所有类接口都找出来。这里我们用 `String` 举例，我们来看 `String` 类图
 
-![String](/docs/ch-11/images/String.png)
+![String](./images/String.png)
 
 
 

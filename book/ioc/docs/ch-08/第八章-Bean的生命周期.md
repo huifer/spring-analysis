@@ -507,11 +507,11 @@ public class PeopleBean {
 
 - `name` 模式的存储
 
-  ![image-20210112144746394](/docs/ch-08/images/image-20210112144746394.png)
+  ![image-20210112144746394](./images/image-20210112144746394.png)
 
 - `index` 模式的存储
 
-  ![image-20210112144823088](/docs/ch-08/images/image-20210112144823088.png)
+  ![image-20210112144823088](./images/image-20210112144823088.png)
 
 
 
@@ -568,7 +568,7 @@ private final List<ValueHolder> genericArgumentValues = new ArrayList<>();
 
 在这个配置文件基础上我们先来看存储情况
 
-![image-20210112145832012](/docs/ch-08/images/image-20210112145832012.png)
+![image-20210112145832012](./images/image-20210112145832012.png)
 
 在这个例子中我们有两种模式一个是字面量，另一个是引用量，对于这两种方式的处理在 Spring 中都有相关处理具体对于这部分的处理各位可以看 `org.springframework.beans.factory.support.ConstructorResolver#resolveConstructorArguments` 
 
@@ -580,7 +580,7 @@ minNrOfArgs = resolveConstructorArguments(beanName, mbd, bw, cargs, resolvedValu
 
   在这个方法调用中会修改 `resolvedValues` 的数据，在这个处理过程中就会去将数据补充完整
 
-  ![image-20210112151748864](/docs/ch-08/images/image-20210112151748864.png)
+  ![image-20210112151748864](./images/image-20210112151748864.png)
 
 
 
@@ -602,7 +602,7 @@ minNrOfArgs = resolveConstructorArguments(beanName, mbd, bw, cargs, resolvedValu
 
 - `InstantiationStrategy` 类图
 
-  ![InstantiationStrategy](/docs/ch-08/images/InstantiationStrategy.png)
+  ![InstantiationStrategy](./images/InstantiationStrategy.png)
 
 在整个 Spring 中有两个创建对象的形式(可能还有其他，欢迎读者提出)。
 
@@ -689,7 +689,7 @@ void setField() throws Exception {
 
 对应前文提到的测试配置我们先来看 Bean Definition 的对象内容
 
-![image-20210113151712020](/docs/ch-08/images/image-20210113151712020.png)
+![image-20210113151712020](./images/image-20210113151712020.png)
 
 
 
@@ -714,7 +714,7 @@ void setField() throws Exception {
 
 - `BeanWrapper` 类图
 
-  ![BeanWrapper.png](/docs/ch-08/images/BeanWrapper.png) 
+  ![BeanWrapper.png](./images/BeanWrapper.png) 
 
 
 
@@ -825,15 +825,15 @@ public void setPropertyValue(PropertyValue pv) throws BeansException {
 
 1. 参数 `pv` 的信息
 
-   ![image-20210113162144229](/docs/ch-08/images/image-20210113162144229.png)
+   ![image-20210113162144229](./images/image-20210113162144229.png)
 
 2. `tokens` 的信息
 
-   ![image-20210113162206886](/docs/ch-08/images/image-20210113162206886.png)
+   ![image-20210113162206886](./images/image-20210113162206886.png)
 
 3. 嵌套属性访问器的信息
 
-   ![image-20210113162241124](/docs/ch-08/images/image-20210113162241124.png)
+   ![image-20210113162241124](./images/image-20210113162241124.png)
 
 
 
@@ -880,7 +880,7 @@ private void processLocalProperty(PropertyTokenHolder tokens, PropertyValue pv) 
 
 在这个方法中关键对象是 `PropertyHandler` , 从代码的细节上我们可以看到设置数据也和这个对象有关，对于 `getLocalPropertyHandler()` 方法的细节和  `PropertyHandler` 的类图都有值得研究的价值。下面我们先来看 `PropertyHandler` 类图
 
-![PropertyHandler](/docs/ch-08/images/PropertyHandler.png) 
+![PropertyHandler](./images/PropertyHandler.png) 
 
 目前我们位于 `BeanWrapperImpl` 中它对于 `getLocalPropertyHandler` 返回值处理是 `BeanPropertyHandler` ，这也合乎情理，毕竟我们目前正在处理的是关于 Bean 属性的相关操作。那我们来看看 `BeanWrapperImpl#getLocalPropertyHandler` 中的实现过程吧。
 
@@ -939,13 +939,13 @@ private CachedIntrospectionResults getCachedIntrospectionResults() {
 
 - `CachedIntrospectionResults` 中的信息
 
-  ![image-20210114091830236](/docs/ch-08/images/image-20210114091830236.png)
+  ![image-20210114091830236](./images/image-20210114091830236.png)
 
   
 
   
 
-  ![image-20210114092536394](/docs/ch-08/images/image-20210114092536394.png)
+  ![image-20210114092536394](./images/image-20210114092536394.png)
 
   
 
@@ -967,7 +967,7 @@ void testCachedIntrospectionResults(){
 
 在上面的图片中可以发现对于属性的描述会存在 `get` 和 `set` 方法，这两个都是 `Method` 对象存储在 `propertyDescriptorCache` 中，那么我们对于属性设置使用 `set` 方法就可以进行设置了。到这一切都拨开迷雾了，对于 `propertyDescriptorCache` 笔者前文介绍了是一个 `map` 对于 `getCachedIntrospectionResults().getPropertyDescriptor(propertyName)` 这段方法的后半段 `getPropertyDescriptor` 方法就清晰了解了，下面我们来看最终的获取结果
 
-![image-20210114092946025](/docs/ch-08/images/image-20210114092946025.png)
+![image-20210114092946025](./images/image-20210114092946025.png)
 
 
 
@@ -1058,7 +1058,7 @@ public void setValue(final @Nullable Object value) throws Exception {
 
 下面是我们在当前阶段需要设置的内容
 
-![image-20210114095309170](/docs/ch-08/images/image-20210114095309170.png)
+![image-20210114095309170](./images/image-20210114095309170.png)
 
 
 
@@ -1068,7 +1068,7 @@ public void setValue(final @Nullable Object value) throws Exception {
 
 - 进行数据设置后的 `BeanWrapper`
 
-![image-20210114095551346](/docs/ch-08/images/image-20210114095551346.png)
+![image-20210114095551346](./images/image-20210114095551346.png)
 
 
 
@@ -1212,7 +1212,7 @@ public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, S
 
 -  `init-method` 对应的存储
 
-  ![image-20210114135206724](/docs/ch-08/images/image-20210114135206724.png)
+  ![image-20210114135206724](./images/image-20210114135206724.png)
 
 
 
@@ -1446,7 +1446,7 @@ public void destroySingletons() {
 
 
 
-![image-20210115085052708](/docs/ch-08/images/image-20210115085052708.png)
+![image-20210115085052708](./images/image-20210115085052708.png)
 
 
 

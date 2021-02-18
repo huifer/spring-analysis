@@ -33,7 +33,7 @@
 
 - 现在我们了解两种 XML 的验证方式: **DTD**、**XSD** 这两者的验证都是根据文档本身出发， 即需要事先编辑好两种类型的文件 (拓展名: `*.dtd` 、`*.XSD` ) ， 在这两种类型文件中存储了关于 Spring 所支持的标签， 那么它们具体存储在那个地方呢? 这些预定义的文件放在 **spring-beans** 的资源文件中
 
-  ![image-20210104133815644](/docs/ch-03/images/image-20210104133815644.png)
+  ![image-20210104133815644](./images/image-20210104133815644.png)
 
 
 
@@ -541,7 +541,7 @@ class ImportNodeTest {
 
 
 
-![image-20210104160826946](/docs/ch-03/images/image-20210104160826946.png)
+![image-20210104160826946](./images/image-20210104160826946.png)
 
 
 
@@ -658,7 +658,7 @@ catch (URISyntaxException ex) {
 
 配合测试用例进行 debug 可以看到下面这样的信息
 
-![image-20210104161345583](/docs/ch-03/images/image-20210104161345583.png)
+![image-20210104161345583](./images/image-20210104161345583.png)
 
 
 
@@ -818,7 +818,7 @@ public class EmptyReaderEventListener implements ReaderEventListener {
 
 
 
-![image-20210104164157642](/docs/ch-03/images/image-20210104164157642.png)
+![image-20210104164157642](./images/image-20210104164157642.png)
 
 
 
@@ -886,7 +886,7 @@ class AliasNodeTest {
 
 下面我们来看一下此时的目录结构
 
-![image-20210105090628602](/docs/ch-03/images/image-20210105090628602.png)
+![image-20210105090628602](./images/image-20210105090628602.png)
 
 
 
@@ -1060,7 +1060,7 @@ private final Map<String， String> aliasMap = new ConcurrentHashMap<>(16);
 
 - debug 截图
 
-![image-20210105094255546](/docs/ch-03/images/image-20210105094255546.png)
+![image-20210105094255546](./images/image-20210105094255546.png)
 
 
 
@@ -1156,7 +1156,7 @@ class BeanNodeTest {
 
 下面我们来看一下此时的目录结构
 
-![image-20210105101021614](/docs/ch-03/images/image-20210105101021614.png)
+![image-20210105101021614](./images/image-20210105101021614.png)
 
 
 
@@ -1468,7 +1468,7 @@ private final Map<String， BeanDefinition> beanDefinitionMap = new ConcurrentHa
 
   知道这些后笔者将测试用例中的对象信息截图出来， 让各位读者有一个简单的了解
 
-  ![image-20210105110507331](/docs/ch-03/images/image-20210105110507331.png)
+  ![image-20210105110507331](./images/image-20210105110507331.png)
 
 
 

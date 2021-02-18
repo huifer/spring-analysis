@@ -63,7 +63,7 @@ public XmlBeanFactory(Resource resource, BeanFactory parentBeanFactory) throws B
 
 - `XmlBeanFactory` 类图
 
-  ![XmlBeanFactory](/docs/ch-10/images/XmlBeanFactory.png)
+  ![XmlBeanFactory](./images/XmlBeanFactory.png)
 
 
 
@@ -407,7 +407,7 @@ private final ConfigurablePropertyResolver propertyResolver =
 
 找到了 `PropertySourcesPropertyResolver` 之后我们对于 `resolveRequiredPlaceholders` 方法的搜索就明朗了，我们来看 `PropertySourcesPropertyResolver` 的类图
 
-![PropertySourcesPropertyResolver](/docs/ch-10/images/PropertySourcesPropertyResolver.png)
+![PropertySourcesPropertyResolver](./images/PropertySourcesPropertyResolver.png)
 
 
 
@@ -438,7 +438,7 @@ b=2
 
 - `setConfigLocations` 执行之后
 
-![image-20210122161405440](/docs/ch-10/images/image-20210122161405440.png)
+![image-20210122161405440](./images/image-20210122161405440.png)
 
 
 
@@ -591,7 +591,7 @@ protected void prepareRefresh() {
 
 在这段代码中 `initPropertySources` 是一个抽象方法在web应用上下文中会有实现，下面是实现了这个方法的对象
 
-![image-20210125104416902](/docs/ch-10/images/image-20210125104416902.png)
+![image-20210125104416902](./images/image-20210125104416902.png)
 
 在 web 应用上下文中处理的内容是将 `ServletConfig` 写入到 `ServletContext` 中，我们现在是一个非 web 工程我们可以将这个当作一个空方法。
 
@@ -643,13 +643,13 @@ protected ConfigurableListableBeanFactory obtainFreshBeanFactory() {
 
 - 通过编辑找到的实现类
 
-![image-20210125111258912](/docs/ch-10/images/image-20210125111258912.png)
+![image-20210125111258912](./images/image-20210125111258912.png)
 
 我们进行类图对比，对比`FileSystemXmlApplicationContext` 类图中是否存在 `AbstractRefreshableApplicationContext` 或者 `GenericApplicationContext`
 
 - `FileSystemXmlApplicationContext` 类图
 
-![FILE](/docs/ch-10/images/FileSystemXmlApplicationContext.png)
+![FILE](./images/FileSystemXmlApplicationContext.png)
 
 
 
@@ -753,7 +753,7 @@ protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
 
 `loadBeanDefinitions`：加载 Bean Definition，这是一个抽象方法在Spring 中有下面这些实现方式
 
-![image-20210125114245287](/docs/ch-10/images/image-20210125114245287.png)
+![image-20210125114245287](./images/image-20210125114245287.png)
 
 根据我们的入口 `FileSystemXmlApplicationContext` 查看类图可以知道具体的实现类是 `AbstractXmlApplicationContext` ，对于加载 Bean Definition 相关的分析各位可以前面的第三章、第四章、第六章和第七章。
 
@@ -761,7 +761,7 @@ protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
 
 下面我们来看一下经过了这段方法之后 Bean Factory 的数据是什么样子的
 
-![image-20210125135742007](/docs/ch-10/images/image-20210125135742007.png)
+![image-20210125135742007](./images/image-20210125135742007.png)
 
 有关 Bean Factory 中的成员变量的详细介绍请查阅附表 `DefaultListableBeanFactory` 成员变量 
 
@@ -876,7 +876,7 @@ protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 
 - `postProcessBeanFactory` 实现类
 
-![image-20210125153102700](/docs/ch-10/images/image-20210125153102700.png)
+![image-20210125153102700](./images/image-20210125153102700.png)
 
 
 
@@ -1029,7 +1029,7 @@ protected void onRefresh() throws BeansException {
 
 这个方法都交由子类实现了，实现了这个方法的都是与 web 相关的，我们简单了解一下 Spring 中有哪些实现
 
-![image-20210126093315609](/docs/ch-10/images/image-20210126093315609.png)
+![image-20210126093315609](./images/image-20210126093315609.png)
 
 
 
@@ -1250,13 +1250,13 @@ public void preInstantiateSingletons() throws BeansException {
 
 - 未经过 `finishBeanFactoryInitialization` 方法的 Bean Factory 
 
-![image-20210126100830788](/docs/ch-10/images/image-20210126100830788.png)
+![image-20210126100830788](./images/image-20210126100830788.png)
 
 
 
 - 经过`finishBeanFactoryInitialization` 方法的 Bean Factory 
 
-![image-20210126100857507](/docs/ch-10/images/image-20210126100857507.png)
+![image-20210126100857507](./images/image-20210126100857507.png)
 
 
 

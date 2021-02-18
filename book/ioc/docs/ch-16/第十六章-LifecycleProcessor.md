@@ -39,7 +39,7 @@ protected void finishRefresh() {
 
 这三处地方就是我们下面需要进行分析的内容，在开始分析之前我们来看看 `LifecycleProcessor` 的类图
 
-![LifecycleProcessor](/images/DefaultLifecycleProcessor.png)
+![LifecycleProcessor](images/DefaultLifecycleProcessor.png)
 
 从这个类图上我们可以确定我们接下来的分析目标是  `DefaultLifecycleProcessor` 类。
 

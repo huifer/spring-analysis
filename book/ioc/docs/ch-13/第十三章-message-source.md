@@ -124,7 +124,7 @@ protected void initMessageSource() {
 
 - `messageSource` 初始化的信息
 
-![image-20210127155108912](/docs/ch-13/images/image-20210127155108912.png)
+![image-20210127155108912](./images/image-20210127155108912.png)
 
  	这里我们需要关注的信息是 `basenameSet` ，在 `basenameSet` 存储的内容是我们在 Spring XML 中配置的 `basename` 属性。这个属性会为后续的读取配置文件提供帮助。
 
@@ -232,7 +232,7 @@ protected String getMessageInternal(@Nullable String code, @Nullable Object[] ar
 
 - `resolveCodeWithoutArguments` 的多种实现
 
-![image-20210127162904940](/docs/ch-13/images/image-20210127162904940.png)
+![image-20210127162904940](./images/image-20210127162904940.png)
 
 
 
@@ -320,7 +320,7 @@ Map<String, Map<Locale, ResourceBundle>> cachedResourceBundles
 
 - `bundle` 的数据信息
 
-![image-20210127164946938](/docs/ch-13/images/image-20210127164946938.png)
+![image-20210127164946938](./images/image-20210127164946938.png)
 
 
 
@@ -411,11 +411,11 @@ String format_data2 = context.getMessage("format_data", new Object[] {new Messag
 
 - 用例1
 
-  ![image-20210128091038453](/docs/ch-13/images/image-20210128091038453.png)
+  ![image-20210128091038453](./images/image-20210128091038453.png)
 
 - 用例2
 
-  ![image-20210128091050534](/docs/ch-13/images/image-20210128091050534.png)
+  ![image-20210128091050534](./images/image-20210128091050534.png)
 
 
 

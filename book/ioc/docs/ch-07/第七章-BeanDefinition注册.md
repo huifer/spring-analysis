@@ -59,7 +59,7 @@ public static void registerBeanDefinition(
 
 先来看 `BeanDefinitionRegistry` 的类图
 
-![BeanDefinitionRegistry](/docs/ch-07/images/BeanDefinitionRegistry.png)
+![BeanDefinitionRegistry](./images/BeanDefinitionRegistry.png)
 
 
 
@@ -136,7 +136,7 @@ if (beanDefinition instanceof AbstractBeanDefinition) {
 
 在 Spring 中通过 `processBeanDefinition` 方法得到的 Bean Definition 的类型是：`GenericBeanDefinition`。来看看 `GenericBeanDefinition` 的类图
 
-![GenericBeanDefinition](/docs/ch-07/images/GenericBeanDefinition.png)
+![GenericBeanDefinition](./images/GenericBeanDefinition.png)
 
 在类图中我们可以发现 `GenericBeanDefinition` 类型是 `AbstractBeanDefinition` 所以这段方法是可以执行的，下面我们来对验证方法 `validate` 进行了解。
 

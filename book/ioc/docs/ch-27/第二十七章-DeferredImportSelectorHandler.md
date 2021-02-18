@@ -189,7 +189,7 @@ public void process() {
 
 - `deferredImports` 数据信息
 
-![image-20210207134104490](/docs/ch-27/images/image-20210207134104490.png)
+![image-20210207134104490](./images/image-20210207134104490.png)
 
 
 
@@ -390,7 +390,7 @@ private void processImports(ConfigurationClass configClass, SourceClass currentS
 
 - `configClass` 属性信息
 
-![image-20210207150722257](/docs/ch-27/images/image-20210207150722257.png)
+![image-20210207150722257](./images/image-20210207150722257.png)
 
 
 

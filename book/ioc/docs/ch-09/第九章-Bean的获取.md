@@ -1128,13 +1128,13 @@ if (mbd.getFactoryMethodName() != null) {
 
 - 关于 `FactoryBean` 的
 
-![image-20210119091257751](/docs/ch-09/images/image-20210119091257751.png)
+![image-20210119091257751](./images/image-20210119091257751.png)
 
 
 
 - 关于需要执行的 `FactoryMethod` 
 
-  ![image-20210119091620014](/docs/ch-09/images/image-20210119091620014.png)
+  ![image-20210119091620014](./images/image-20210119091620014.png)
 
 
 
@@ -2273,7 +2273,7 @@ void testCircularDependenceInJava() {
 
 - Java 中手工模拟循环依赖
 
-![image-20210120090533503](/docs/ch-09/images/image-20210120090533503.png)
+![image-20210120090533503](./images/image-20210120090533503.png)
 
 
 
@@ -2379,7 +2379,7 @@ void testCircularDependenceInJavaAuto() throws Exception {
 
 - 测试用例中的数据信息
 
-![image-20210120101725703](/docs/ch-09/images/image-20210120101725703.png)
+![image-20210120101725703](./images/image-20210120101725703.png)
 
 
 

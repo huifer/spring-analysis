@@ -221,7 +221,7 @@ void testThreeVar() {
 
 - `configurationClasses` 变量和 `knownSuperclasses` 变量数据
 
-![image-20210209094358670](/docs/ch-29/images/image-20210209094358670.png)
+![image-20210209094358670](./images/image-20210209094358670.png)
 
 
 
@@ -453,13 +453,13 @@ void testProcessMemberClasses(){
 
 - `memberClasses` 数据信息
 
-![image-20210209102740698](/docs/ch-29/images/image-20210209102740698.png)
+![image-20210209102740698](./images/image-20210209102740698.png)
 
 接下来我们看 `candidates` 变量，该对象表示通过条件过来的内部类，这些内部类会被当做 Spring Configuration Bean 处理
 
 - `candidates` 数据信息
 
-![image-20210209102904873](/docs/ch-29/images/image-20210209102904873.png)
+![image-20210209102904873](./images/image-20210209102904873.png)
 
 最后这些符合条件的内部类会进行配置类解析。这里对于配置类的解析其实就是本文所讨论的内容。
 
@@ -575,7 +575,7 @@ public class PropertySourceTest {
 
 - `PropertySources` 读取后的数据
 
-![image-20210209104743908](/docs/ch-29/images/image-20210209104743908.png)
+![image-20210209104743908](./images/image-20210209104743908.png)
 
 可以看到这里所有的注解会被整合在一个集合中这个集合的数据是注解`@PropertySource`的全属性，由于笔者没有编写 `InPropertySources` 文件我们将测试类还原
 
@@ -718,7 +718,7 @@ public ResourcePropertySource(EncodedResource resource) throws IOException {
 
 - `factory.createPropertySource(name, new EncodedResource(resource, encoding))` 执行结果
 
-![image-20210209110901603](/docs/ch-29/images/image-20210209110901603.png)
+![image-20210209110901603](./images/image-20210209110901603.png)
 
 可以看到 `data.properties` 中的数据被解析出来了，并存储在 `source` 中。`PropertySource` 对象的获取我们已经完成，接下来我们需要做的事情是将这个数据放入到 Spring 中，具体方法是 `addPropertySource` 
 
@@ -802,11 +802,11 @@ public class MutablePropertySources implements PropertySources {
 
 - `propertySourceNames` 数据信息
 
-![image-20210209113549516](/docs/ch-29/images/image-20210209113549516.png)
+![image-20210209113549516](./images/image-20210209113549516.png)
 
 - `environment` 数据信息
 
-![image-20210209113612877](/docs/ch-29/images/image-20210209113612877.png)
+![image-20210209113612877](./images/image-20210209113612877.png)
 
 
 
@@ -958,7 +958,7 @@ Set<AnnotationAttributes> componentScans = AnnotationConfigUtils.attributesForRe
 
 - `componentScans` 数据信息
 
-![image-20210209131512085](/docs/ch-29/images/image-20210209131512085.png)
+![image-20210209131512085](./images/image-20210209131512085.png)
 
 
 
@@ -1402,7 +1402,7 @@ void testInterface(){
 
 - `beanMethods` 的数据，（非`processInterfaces` 处理)
 
-![image-20210209151622022](/docs/ch-29/images/image-20210209151622022.png)
+![image-20210209151622022](./images/image-20210209151622022.png)
 
 这这里我们可以看到三个，这里最后一个是从接口 `default` 中继承过来的，如果不需要请将代码修改成下面的样子
 
@@ -1468,13 +1468,13 @@ public class InterAImpl implements InterA {
 
 - Bean Methods 数据信息
 
-![image-20210209153352278](/docs/ch-29/images/image-20210209153352278.png)
+![image-20210209153352278](./images/image-20210209153352278.png)
 
 
 
 最后我们来看看容器中的数据，通过 `context.getBeansOfType(AnnPeople.class)` 进行查询
 
-![image-20210209153027228](/docs/ch-29/images/image-20210209153027228.png)
+![image-20210209153027228](./images/image-20210209153027228.png)
 
 
 
@@ -1548,7 +1548,7 @@ void testThreeVar() {
 
 - `knownSuperclasses` 数据信息
 
-![image-20210209154454141](/docs/ch-29/images/image-20210209154454141.png)
+![image-20210209154454141](./images/image-20210209154454141.png)
 
 
 
