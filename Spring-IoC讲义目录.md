@@ -416,6 +416,15 @@
 第二十九章 Spring 配置类解析
 - 29.1 parse 方法分析
 - 29.2 processConfigurationClass 分析
+- 29.3 doProcessConfigurationClass 方法分析
+- 29.4 处理 @Component 注解
+- 29.5 处理 @PropertySource 和 @PropertySources 注解
+- 29.6 处理 @ComponentScans 和 @ComponentScan 注解
+- 29.7 处理 @Import 注解
+- 29.8 处理 @ImportResource 注解
+- 29.9 处理 @Bean 注解
+- 29.10 处理父类配置
+- 29.11 总结
 
 第三十章 Spring 排序注解
 - 30.1 测试环境搭建
