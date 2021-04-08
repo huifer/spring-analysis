@@ -1701,6 +1701,8 @@ class MappingRegistry {
 
 
 
+
+
 ## RouterFunctionMapping
 
 下面将对RouterFunctionMapping类进行分析，首先查看它的类图，具体信息如图所示
@@ -1869,6 +1871,197 @@ GET("/product", req -> ok().body("hello"))
 
 
 
+
+
+
+
+## 注解模式下HandlerMethod创建
+
+下面将介绍在注解模式下HnadlerMethod的创建流程进行分析，在SpringMVC中关于HnadlerMethod的创建代码如下：
+
+```java
+//org.springframework.web.servlet.handler.AbstractHandlerMethodMapping#createHandlerMethod
+protected HandlerMethod createHandlerMethod(Object handler, Method method) {
+   // 是否是字符串
+   if (handler instanceof String) {
+      // 创建对象
+      return new HandlerMethod((String) handler,
+            obtainApplicationContext().getAutowireCapableBeanFactory(), method);
+   }
+   return new HandlerMethod(handler, method);
+}
+```
+
+从上述代码可以发现对于HandlerMethod的创建提供了两种方式，第一种是根据handler为字符串的处理，第二种则是非字符串处理，在这两中处理逻辑至下所调用的都是new关键字的使用。首先对第二种创建方式进行探讨，第二种对应的处理代码如下：
+
+```java
+public HandlerMethod(Object bean, Method method) {
+   Assert.notNull(bean, "Bean is required");
+   Assert.notNull(method, "Method is required");
+   this.bean = bean;
+   this.beanFactory = null;
+   this.beanType = ClassUtils.getUserClass(bean);
+   this.method = method;
+   this.bridgedMethod = BridgeMethodResolver.findBridgedMethod(method);
+   this.parameters = initMethodParameters();
+   evaluateResponseStatus();
+   this.description = initDescription(this.beanType, this.method);
+}
+```
+
+从这段代码中可以看到基本操作就是成员变量赋值，在这段代码中需要关注下面几个方法
+
+1. BridgeMethodResolver.findBridgedMethod(method)。
+2. initMethodParameters。
+3. evaluateResponseStatus。
+4. initDescription。
+
+下面查看第一种处理的代码内容：
+
+```java
+public HandlerMethod(String beanName, BeanFactory beanFactory, Method method) {
+   Assert.hasText(beanName, "Bean name is required");
+   Assert.notNull(beanFactory, "BeanFactory is required");
+   Assert.notNull(method, "Method is required");
+   this.bean = beanName;
+   this.beanFactory = beanFactory;
+   Class<?> beanType = beanFactory.getType(beanName);
+   if (beanType == null) {
+      throw new IllegalStateException("Cannot resolve bean type for bean with name '" + beanName + "'");
+   }
+   this.beanType = ClassUtils.getUserClass(beanType);
+   this.method = method;
+   this.bridgedMethod = BridgeMethodResolver.findBridgedMethod(method);
+   this.parameters = initMethodParameters();
+   evaluateResponseStatus();
+   this.description = initDescription(this.beanType, this.method);
+}
+```
+
+从上述代码中可以发现在处理过程中和第二中方式进行对比发现数据源不一样，此时的数据源是BeanFactory，其他几个核心处理方法还是不变。
+
+
+
+### findBridgedMethod
+
+下面对findBridgedMethod方法进行分析，该方法的作用是，具体处理代码如下：
+
+```java
+public static Method findBridgedMethod(Method bridgeMethod) {
+   if (!bridgeMethod.isBridge()) {
+      return bridgeMethod;
+   }
+   Method bridgedMethod = cache.get(bridgeMethod);
+   if (bridgedMethod == null) {
+      // Gather all methods with matching name and parameter size.
+      List<Method> candidateMethods = new ArrayList<>();
+      MethodFilter filter = candidateMethod ->
+            isBridgedCandidateFor(candidateMethod, bridgeMethod);
+      ReflectionUtils.doWithMethods(bridgeMethod.getDeclaringClass(), candidateMethods::add, filter);
+      if (!candidateMethods.isEmpty()) {
+         bridgedMethod = candidateMethods.size() == 1 ?
+               candidateMethods.get(0) :
+               searchCandidates(candidateMethods, bridgeMethod);
+      }
+      if (bridgedMethod == null) {
+         // A bridge method was passed in but we couldn't find the bridged method.
+         // Let's proceed with the passed-in method and hope for the best...
+         bridgedMethod = bridgeMethod;
+      }
+      cache.put(bridgeMethod, bridgedMethod);
+   }
+   return bridgedMethod;
+}
+```
+
+在上述代码处理过程中关于bridgedMethod的获取可以通过两种方式获取：
+
+1. 通过缓存进行获取。
+2. 通过推论进行获取。
+
+首先是通过缓存获取，缓存结构：key是Method，value是Method。具体缓存定义代码如下：
+
+```java
+private static final Map<Method, Method> cache = new ConcurrentReferenceHashMap<>();
+```
+
+其次介绍推论获取的细节，在推论进行前需要先找出可能的Method对象，具体处理方法是下面代码：
+
+```java
+ReflectionUtils.doWithMethods(bridgeMethod.getDeclaringClass(), candidateMethods::add, filter)
+```
+
+这段代码的主要过程是通过类和方法过滤器进行搜索，得到的对象是Method集合，在得到集合对象后关于返回值的确认存在两个方式：
+
+1. 集合数量只有一个，直接将其作为返回值。
+2. 集合数量大于一个，通过isBridgeMethodFor方法进行判断如果判断结果为true将其作为返回值，如果在整个集合中没有符合的对象则获取第一个元素作为返回值。
+
+
+
+### initMethodParameters
+
+下面对initMethodParameters方法进行分析，该方法的作用是创建MethodParameter数组，具体处理代码如下：
+
+```java
+private MethodParameter[] initMethodParameters() {
+   int count = this.bridgedMethod.getParameterCount();
+   MethodParameter[] result = new MethodParameter[count];
+   for (int i = 0; i < count; i++) {
+      result[i] = new HandlerMethodParameter(i);
+   }
+   return result;
+}
+```
+
+在上述代码处理过程中需要依赖bridgedMethod对象，具体的创建对象是HandlerMethodParameter，在该对象中存储了参数的注解列表和其他一些和方法参数有关的内容。
+
+
+
+### evaluateResponseStatus
+
+下面对evaluateResponseStatus方法进行分析，该方法的作用是设置成员变量responseStatus和responseStatusReason，具体处理代码如下：
+
+```java
+private void evaluateResponseStatus() {
+   ResponseStatus annotation = getMethodAnnotation(ResponseStatus.class);
+   if (annotation == null) {
+      annotation = AnnotatedElementUtils.findMergedAnnotation(getBeanType(), ResponseStatus.class);
+   }
+   if (annotation != null) {
+      this.responseStatus = annotation.code();
+      this.responseStatusReason = annotation.reason();
+   }
+}
+```
+
+在上述代码中主要处理流程如下：
+
+1. 从方法上获取ResponseStatus注解对象。
+2. 如果从方法上获取ResponseStatus注解对象失败从类上进行获取。
+3. 如果获取到ResponseStatus注解后将注解的code属性和reason属性设置给成员变量。
+
+### initDescription
+
+下面对initDescription方法进行分析，该方法的作用是初始化描述信息，具体处理代码如下：
+
+```java
+private static String initDescription(Class<?> beanType, Method method) {
+   StringJoiner joiner = new StringJoiner(", ", "(", ")");
+   for (Class<?> paramType : method.getParameterTypes()) {
+      joiner.add(paramType.getSimpleName());
+   }
+   return beanType.getName() + "#" + method.getName() + joiner.toString();
+}
+```
+
+在这段代码处理中可以发现返回对象是对象类型+"#"+方法名称+参数类型列表。
+
+
+
+
+
+
+
 ## 拦截器相关分析
 
 接下来将对拦截器相关内容进行分析，在前文看到的拦截器有PathExposingHandlerInterceptor和UriTemplateVariablesHandlerInterceptor。
@@ -1994,6 +2187,6 @@ void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse resp
 
 
 
-## 总结
+## HandlerMapping 总结
 
-本章围绕`HandlerMapping`接口做分析，在Spring中这个接口的实现类主要入口是`org.springframework.web.servlet.handler.AbstractHandlerMapping#getHandler`，AbstractHandlerMapping类中的这个实现是整个SpringMVC的核心之一，在这个方法中产生分支处理的是`getHandlerInternal`方法，在Spring中有`AbstractHandlerMethodMapping`和`AbstractUrlHandlerMapping`，前者的定位相对准确。除此之外在AbstractHandlerMapping类中还有关于拦截器的相关处理。
+本章围绕`HandlerMapping`接口做分析，在SpringMVC中这个接口的实现类主要入口是`org.springframework.web.servlet.handler.AbstractHandlerMapping#getHandler`，AbstractHandlerMapping类中的这个实现是整个SpringMVC的核心之一，在这个方法中产生分支处理的是`getHandlerInternal`方法，在Spring中有`AbstractHandlerMethodMapping`和`AbstractUrlHandlerMapping`，前者的定位相对准确。除此之外在AbstractHandlerMapping类中还有关于拦截器的相关处理。
