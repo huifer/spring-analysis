@@ -41,7 +41,8 @@
 ### Spring MVC 讲义
 - [第一章-SpringMVC环境搭建](/book/mvc/ch-01/ch-01-SpringMVC环境搭建.md)
 - [第二章-SpringMVC容器初始化](/book/mvc/ch-02/ch-02-SpringMVC容器初始化.md)
-- [第三章-HandlerMapping分析.md](/book/mvc/HandlerMapping/HandlerMapping分析.md)
+- [第三章-HandlerMapping分析](/book/mvc/HandlerMapping/HandlerMapping分析.md)
+- [第四章-HandlerExceptionResolver](/book/mvc/HandlerExceptionResolver/HandlerExceptionResolver.md)
 
 
 ## 独立类分析
