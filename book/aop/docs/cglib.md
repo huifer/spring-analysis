@@ -1,11 +1,10 @@
 # CGLIB
-从这一章节开始笔者将和各位一起进入到 CGLIB 这项技术的源码分析中。
 
-
+从这一章节开始将进入到CGLIB 这项技术的源码分析中。
 
 ## 环境搭建
 
-首先我们需要确定我们分析的版本号. 学习 CGLIB 我们的主要目标还是为了 SpringFramework 框架服务，所以我们需要在 SpringFramework 框架中找到我们的目标版本，我们所使用的SpringFramework版本是 **5.2.3.release** ，通过查看 `spring-core.gradle` 文档我们可以确认具体 CGLIB 版本号：**3.3.0**。
+首先需要确定CGLIB分析的版本号. 学习 CGLIB 框架的主要目标还是为了 SpringFramework 框架中AOP相关知识服务，所以需要在 SpringFramework 框架中找到CGLIB的目标版本，在Spring源码分析中所选用的SpringFramework版本是 **5.2.3.release** ，通过查看 `spring-core.gradle` 文档可以确认具体 CGLIB 版本号：**3.3.0**。
 
 - `spring-core.gradle` 文档信息
 
@@ -34,7 +33,7 @@ configurations {
 
 
 
-确定了版本号后我们来下载源码，CGLIB 的源码内容托管在 [GitHub](https://github.com/cglib/cglib)上。下面我们来进行代码获取操作
+确定了版本号后来进行源码下载，CGLIB 的源码托管在 [GitHub](https://github.com/cglib/cglib)上。下面我们来进行代码获取操作
 
 1. 克隆代码
 
@@ -101,7 +100,7 @@ git switch -c sourcehot_release_3_3_0
 
 
 
-进过上述操作我们就获得了后续源码分析的基础分支。下面我们来创建一个测试用的maven 工程
+进过上述操作就获得了后续源码分析的基础分支。下面来创建一个测试用的maven 工程
 
 
 
@@ -109,13 +108,13 @@ git switch -c sourcehot_release_3_3_0
 
 
 
-创建完成我们的用例工程后我们来看此时的文件情况
+创建完成用例工程后，来看此时的文件情况
 
 ![image-20210219132217338](images/image-20210219132217338.png)
 
 
 
-项目创建完成后我们需要放入依赖
+项目创建完成后需要引入CGLIB依赖
 
 - cglib 依赖
 
@@ -130,9 +129,9 @@ git switch -c sourcehot_release_3_3_0
 
 ### 测试用例编写
 
-工程准备就绪，下面我们来写一个测试用例。
+工程准备就绪，下面编写一个简单的测试用例。
 
-第一步我们需要编写一个被代理的对象
+第一步需要编写一个被代理的对象
 
 ```java
 public class CrudService {
@@ -142,7 +141,7 @@ public class CrudService {
 }
 ```
 
-第二步我们需要编写方法增强器
+第二步需要编写方法增强器
 
 ```java
 public class FirstMethodInterceptor implements MethodInterceptor {
@@ -158,9 +157,7 @@ public class FirstMethodInterceptor implements MethodInterceptor {
 }
 ```
 
-第三步我们需要编写测试类
-
-
+第三步需要编写测试类
 
 ```java
 public class CrudServiceTest {
@@ -195,13 +192,13 @@ public class CrudServiceTest {
 
 ## `Enhancer#create` 分析
 
-在我们所编写的测试方法中我们出了一些对象创建和属性设置以外对 `Enhancer` 对象的使用其实只有 `enhancer.create` 这样一段，这段代码返回给我的是一个 Object 各位读者可以将其理解成为代理对象或者增强对象。下面我们先来看看这个对象的一些属性
+在前文所编写的测试方法中除了一些对象创建和属性设置以外对 `Enhancer` 对象的使用其实只有 `enhancer.create` 这样一段，这段代码返回给程序使用的是一个 Object 对象，可以将其理解成为代理对象或者增强对象。下面来是增强对象的一些属性信息
 
 - 增强类的属性
 
 ![image-20210219135159466](images/image-20210219135159466.png) 
 
-这里我们可以简单看到一些数据信息，各位如果想要看到更多的数据信息可以在测试方法最开始添加下面这段代码
+从上图中可以看到增强对象的一些数据信息，这些数据信息还不够完善，通过下面这段代码来输出更多的对象信息
 
 ```java
 System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\desktop\\git_repo\\cglib\\sourcehot-cglib\\proxy");
@@ -235,11 +232,11 @@ public class CrudService$$EnhancerByCGLIB$$49d45d14 extends CrudService implemen
 }
 ```
 
-从这样一段生成出来的代码中我们可以看到这里的 `save` 方法前面有 `MethodInterceptor` 的数据传递，这个数据信息从我们的断点截图中可以知道这是我们所编写的 `FirstMethodInterceptor` ，这样我们就可以看到整个方法的处理流程了，如果存在 `FirstMethodInterceptor` 对象则进行方法调用，最后在执行 `save` 方法
+从这样一段生成出来的代码中可以看到这里的 `save` 方法前面有 `MethodInterceptor` 的数据传递，这个数据信息从断点截图中可以知道这是在测试用例中所编写的 `FirstMethodInterceptor` 对象，现在可以看到整个方法的处理流程，如果存在 `FirstMethodInterceptor` 对象则进行方法调用，最后在执行 `save` 方法
 
 
 
-下面我们来看 `create` 方法的详细内容
+下面来看 `create` 方法的详细内容
 
 - `net.sf.cglib.proxy.Enhancer#create()` 方法详情
 
@@ -251,7 +248,7 @@ public Object create() {
 }
 ```
 
-在这段代码中设计两个参数和一个方法的调用先来看两个参数的含义
+在这段代码中设计两个参数和一个方法的调用，下面是两个参数的含义
 
 1. `classOnly`：类是否唯一
 2. `argumentTypes`：参数类型列表
@@ -260,7 +257,7 @@ public Object create() {
 
 
 
-接下来我们来看 `createHelper` 方法
+CGLIB 中关于`createHelper` 方法的代码信息如下：
 
 ```java
 private Object createHelper() {
@@ -288,15 +285,11 @@ private Object createHelper() {
 2. key的生成
 3. 代理对象的生成
 
-下面我们来对这三个操作步骤进行详细分析
-
-
+下面对着三个主要操作流程做更详细的分析
 
 ## 数据验证
 
-首先我们来看数据验证的代码
-
-- `preValidate` 方法详情
+首先来看`createHelper`方法中关于数据验证的方法，具体代码如下：
 
 ```java
 private void preValidate() {
@@ -320,7 +313,7 @@ private void preValidate() {
 
 ```
 
-阅读完方法后我们来整理逻辑
+阅读完成方法后，对整个`preValidate` 方法进行流程整理：
 
 1. 如果回调类型为空，那么 CGLIB 会通过回调接口列表来推论出最终的回调类型列表，在完成推论后将验证标记设置为 `true`
 
@@ -338,7 +331,7 @@ private void preValidate() {
 
 ## key 的生成
 
-接下来我们来看 key 的生成
+接下来进行key生成的相关源码分析，CGLIB中对于key生成的代码如下：
 
 ```java
 Object key = KEY_FACTORY.newInstance((superclass != null) ? superclass.getName() : null,
@@ -350,14 +343,14 @@ Object key = KEY_FACTORY.newInstance((superclass != null) ? superclass.getName()
       serialVersionUID);
 ```
 
-这段代码我们需要先来认识  `KEY_FACTORY` 对象，这个对象是 `Enhancer` 中的一个成员变量，具体信息如下
+这段代码中需要先来认识  `KEY_FACTORY` 对象，这个对象是 `Enhancer` 中的一个成员变量，具体信息如下
 
 ```java
 private static final EnhancerKey KEY_FACTORY =
       (EnhancerKey) KeyFactory.create(EnhancerKey.class, KeyFactory.HASH_ASM_TYPE, null);
 ```
 
-下面我们先来整理 `KeyFactory.create` 方法的参数列表
+下面先来整理 `KeyFactory.create` 方法的参数列表
 
 - `KeyFactory.create` 参数表
 
@@ -369,7 +362,7 @@ private static final EnhancerKey KEY_FACTORY =
 
 
 
-继续向下追踪源代码，我们找到 `net.sf.cglib.core.KeyFactory#create(java.lang.ClassLoader, java.lang.Class, net.sf.cglib.core.KeyFactoryCustomizer, java.util.List<net.sf.cglib.core.KeyFactoryCustomizer>)` 方法
+继续向下追踪源代码，找到 `net.sf.cglib.core.KeyFactory#create(java.lang.ClassLoader, java.lang.Class, net.sf.cglib.core.KeyFactoryCustomizer, java.util.List<net.sf.cglib.core.KeyFactoryCustomizer>)` 方法
 
 
 
@@ -392,9 +385,7 @@ public static KeyFactory create(ClassLoader loader, Class keyInterface, KeyFacto
 }
 ```
 
-在这段代码中我们可以看到具体生成能力是 `Generator` 所提供的，在该方法中主体逻辑是设置各类数据。设置属性的方法就不做展开了，我们来看最下面一行的 `create` 方法详情
-
-
+在这段代码中可以看到具体生成能力是 `Generator` 所提供的，在该方法中主体逻辑是设置各类数据。设置属性的方法就不做展开了，来看最下面一行的 `create` 方法详情
 
 ```java
 protected Object create(Object key) {
@@ -429,16 +420,16 @@ protected Object create(Object key) {
 }
 ```
 
-下面我们来整理这段方法的主要执行流程
+阅读完成上述方法后来进行该方法的流程整理：
 
-1. 第一步处理是关于数据缓存相关，缓存中是否存在数据存在就不做处理，不存在就重新设置到缓存中。
-2. 第二步处理时关于对象获取的，这部分代码的实现是由子类 `Enhancer` 进行处理。
+1. 第一步：处理是关于数据缓存相关，缓存中是否存在数据存在就不做处理，不存在就重新设置到缓存中。
+2. 第二步：处理时关于对象获取的，这部分代码的实现是由子类 `Enhancer` 进行处理。
 
 
 
 ### `Enhancer#firstInstance` 方法分析
 
-下面我们先来看 `firstInstance` 方法中的处理细节
+接下来进行 `firstInstance` 方法的分析，CGLIB中 `firstInstance` 的代码如下：
 
 - `net.sf.cglib.proxy.Enhancer#firstInstance` 方法详情
 
@@ -486,11 +477,11 @@ private Object createUsingReflection(Class type) {
 
 ```
 
-这里我们就不具体再往下深入挖掘 `ReflectUtils.newInstance` 方法的信息了。
+这里就不具体再往下深入挖掘 `ReflectUtils.newInstance` 方法的信息了。
 
 
 
-现在我们对于 `firstInstance` 方法的处理流程有了更深入的了解。
+现在对于 `firstInstance` 方法的处理流程有了更深入的了解。
 
 
 
@@ -498,7 +489,7 @@ private Object createUsingReflection(Class type) {
 
 ### `Enhancer#nextInstance` 方法分析
 
-下面我们来看另一个创建 `KeyFactory` 的方法 `nextInstance` 
+下面来看另一个创建 `KeyFactory` 的方法 `nextInstance` 
 
 ```java
 protected Object nextInstance(Object instance) {
@@ -522,7 +513,7 @@ protected Object nextInstance(Object instance) {
 }
 ```
 
-在这段代码中我们可以看到两种获取 `Object` 的方式
+在这段代码中可以看到两种获取 `Object` 的方式
 
 1. 第一种：通过 `EnhancerFactoryData` 的属性 `generatedClass` 获取。
 2. 第二种：通过 `data.newInstance` 方法进行获取对象。
@@ -533,15 +524,13 @@ protected Object nextInstance(Object instance) {
 
 
 
-至此我们就拥有了 `KEY_FACTORY` 对象，我们打上断点来看看 `KEY_FACTORY` 现在是什么。
+现在拥有了 `KEY_FACTORY` 对象，现在 `KEY_FACTORY`的数据内容如下图所示：
 
 ![image-20210220102219628](images/image-20210220102219628.png)
 
-这个对象是在内存中的一个对象笔者在前文告诉过各位如何获取这样一个对象，下面我们来看生成出来的对象
+这个对象是在内存中的一个对象，在前文有提到如何获取这样一个对象，下面是生成出来的对象信息：
 
-
-
-- `Enhancer$EnhancerKey$$KeyFactoryByCGLIB$$7fb24d72` 生成的keyFactory
+- `Enhancer$EnhancerKey$$KeyFactoryByCGLIB$$7fb24d72` 生成的`keyFactory`
 
 ```java
 public class Enhancer$EnhancerKey$$KeyFactoryByCGLIB$$7fb24d72 extends KeyFactory implements EnhancerKey {
@@ -579,7 +568,7 @@ public class Enhancer$EnhancerKey$$KeyFactoryByCGLIB$$7fb24d72 extends KeyFactor
 1. 继承类 `KeyFactory` 
 2. 实现类 `EnhancerKey`
 
-这两个类我们的关注重点是接口 **`EnhancerKey`**，这个接口就是我们最开始的入口：**key生成的方法定义者** ，现在我们看到了这段代码后我们可以下判断了，在这个阶段中对于 key 的生成结果就是将**参数全部传递进来然后赋值给 FIELD_0-6 字段**
+这两个类中需要关注重点是 **`EnhancerKey`**接口，这个接口就是最开始的入口：**key生成的方法定义者** 。通过这段代码可以确认在这个阶段中对于 key 的生成结果就是将**参数全部传递进来然后赋值给 FIELD_0-6 字段**
 
 - key 的生成结果
 
@@ -589,13 +578,11 @@ public class Enhancer$EnhancerKey$$KeyFactoryByCGLIB$$7fb24d72 extends KeyFactor
 
 ## 代理对象的生成
 
-代理对象的生成依靠 `create` 方法，这一点笔者在前文已经做出分析各位可以向前翻阅。
+代理对象的生成依靠 `create` 方法，这一点在前文已经做出分析。
 
 
 
-
-
-到这里我们还有一个疑问这个代理class是怎么生成出来的，这里就涉及到接口 `net.sf.cglib.core.ClassGenerator` ，这段方法的调用入口是由 `net.sf.cglib.core.AbstractClassGenerator.ClassLoaderData#get` 提供的
+到这里还有一个疑问这个代理class是怎么生成出来的，这里就涉及到接口 `net.sf.cglib.core.ClassGenerator` ，这段方法的调用入口是由 `net.sf.cglib.core.AbstractClassGenerator.ClassLoaderData#get` 提供的
 
 
 
@@ -603,7 +590,7 @@ public class Enhancer$EnhancerKey$$KeyFactoryByCGLIB$$7fb24d72 extends KeyFactor
 
 ## 生成类分析
 
-接下来我们来看我们通过代码生成的类看看其中的一些细节。首先我们来看直接增强对象 `CrudService$$EnhancerByCGLIB$$49d45d14`，在这个对象中我们主要的查询目标是 `save` 方法
+下面来看生成类中的一些细节，首先来看直接增强对象 `CrudService$$EnhancerByCGLIB$$49d45d14`，在这个对象中主要的查询目标是 `save` 方法
 
 ```java
 public class CrudService$$EnhancerByCGLIB$$49d45d14 extends CrudService implements Factory {
@@ -624,7 +611,11 @@ public class CrudService$$EnhancerByCGLIB$$49d45d14 extends CrudService implemen
 }
 ```
 
-根据我们的拦截处理我们在执行save方法之前做了一层操作，这一层操作体现在生成的类上面就是调用 `MethodInterceptor` 接口，这里笔者又产生一个问题：**如何找到这个save方法执行**，这里我们就需要 `FastClass` 来提供帮助，在 `FastClass` 中提供了一个 `invoke` 方法，这个方法就是来搜索调用具体方法的，下面我们来看生成的 `CrudService$$FastClassByCGLIB$$16b1ce10`
+根据测试用例中的拦截处理在执行`save`方法之前做了一层操作，这一层操作体现在生成的类上面就是调用 `MethodInterceptor` 接口。
+
+下面来看`save`方法寻找的过程，
+
+这里笔者又产生一个问题：**如何找到这个save方法执行**，这里我们就需要 `FastClass` 来提供帮助，在 `FastClass` 中提供了一个 `invoke` 方法，这个方法就是来搜索调用具体方法的，下面我们来看生成的 `CrudService$$FastClassByCGLIB$$16b1ce10`
 
 ```java
 public Object invoke(int var1, Object var2, Object[] var3) throws InvocationTargetException {
@@ -714,29 +705,46 @@ public class FastClassTest {
 
 
 
-最后我们在 `MethodInterceptor` 中
+最后我们在 `MethodInterceptor` 实现类中需要调用 `net.sf.cglib.proxy.MethodProxy#invokeSuper` 来执行原有的方法（被增强的方法）
 
 
+
+- `net.sf.cglib.proxy.MethodProxy#invokeSuper` 方法详情
+
+```java
+public Object invokeSuper(Object obj, Object[] args) throws Throwable {
+   try {
+      init();
+      FastClassInfo fci = fastClassInfo;
+      return fci.f2.invoke(fci.i2, obj, args);
+   }
+   catch (InvocationTargetException e) {
+      throw e.getTargetException();
+   }
+}
+```
+
+在这里所调用的 `fci.f2.invoke` 方法的实现就是从
 
 
 
 ### Enhancer 成员变量表
 
-| 变量名称 | 变量类型 | 变量说明 |
-| -------- | -------- | -------- |
-|    `currentKey`    | `Object` | 缓存key |
-|    `interfaces`    | `Class[]` | 接口列表 |
-|    `filter`    | `CallbackFilter` | 回调过滤器 |
-|    `callbacks`    | `Callback[]` | 回调器列表 |
-|    `callbackTypes`    | `Type[]` | 回调器类型列表 |
-|    `validateCallbackTypes`    | `boolean` | 是否需要进行回调接口类型验证 |
-|    `classOnly`    | `boolean` | 类是否唯一 |
-|    `superclass`    | `Class` | 支持的类，需要进行代理的类 |
-|    `argumentTypes`    | `Class[]` | 参数类型 |
-|    `arguments`    | `Object[]` | 参数值 |
-|    `useFactory`    | `boolean` | 是否使用工厂 |
-|    `serialVersionUID`    | `Long` | 序列化ID |
-|    `interceptDuringConstruction`    | `boolean` | 是否从代理类的构造函数中调用方法 |
+| 变量名称                      | 变量类型         | 变量说明                         |
+| ----------------------------- | ---------------- | -------------------------------- |
+| `currentKey`                  | `Object`         | 缓存key                          |
+| `interfaces`                  | `Class[]`        | 接口列表                         |
+| `filter`                      | `CallbackFilter` | 回调过滤器                       |
+| `callbacks`                   | `Callback[]`     | 回调器列表                       |
+| `callbackTypes`               | `Type[]`         | 回调器类型列表                   |
+| `validateCallbackTypes`       | `boolean`        | 是否需要进行回调接口类型验证     |
+| `classOnly`                   | `boolean`        | 类是否唯一                       |
+| `superclass`                  | `Class`          | 支持的类，需要进行代理的类       |
+| `argumentTypes`               | `Class[]`        | 参数类型                         |
+| `arguments`                   | `Object[]`       | 参数值                           |
+| `useFactory`                  | `boolean`        | 是否使用工厂                     |
+| `serialVersionUID`            | `Long`           | 序列化ID                         |
+| `interceptDuringConstruction` | `boolean`        | 是否从代理类的构造函数中调用方法 |
 
 
 
@@ -756,3 +764,6 @@ public class FastClassTest {
 |                  |                                               |
 |                  |                                               |
 
+
+
+下面来看生成类中的一些细节，首先来看直接增强对象 `CrudService$$EnhancerByCGLIB$$49d45d14`，在这个对象中主要的查询目标是 `save` 方法
